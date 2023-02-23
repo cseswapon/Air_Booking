@@ -1,0 +1,12 @@
+.after_line{
+    position: relative;
+}
+.after_line::after{
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 2px;
+    background: #e5b537;
+    top: 13px;
+    margin-left: 10px;
+}

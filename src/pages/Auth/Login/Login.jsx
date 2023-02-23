@@ -8,6 +8,7 @@ import visa from "../../../assets/icon/Visa.svg";
 import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
+import '../css/Login.css'
 const Login = () => {
   const bestDeal = [
     {
@@ -37,62 +38,96 @@ const Login = () => {
   ];
   return (
     <div className="bg-slate-700 min-h-screen flex items-center justify-center">
-      <div className="flex items-center w-3/4 min-h-screen">
+      <div className="flex items-center w-3/4 bg-slate-100 rounded">
         {/* login part */}
-        <div className="w-1/2">
-          <h1>LgoIn</h1>
+        <div className="w-1/2 p-11">
+          <h1 className="text-center font-bold text-3xl my-3">Login</h1>
           <form>
-            <input type="email" name="" id="" />
+            <input
+              className="w-full my-2 p-3 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+              placeholder="Email Address"
+              type="email"
+              name=""
+              id=""
+            />
             <br />
-            <input type="password" name="" id="" />
+            <input
+              className="w-full my-2 p-3 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+              placeholder="Password"
+              type="password"
+              name=""
+              id=""
+            />
             <br />
-            <p>
-              <span className="text-red-500">Forgot</span>password?
+            <p className="text-center my-2">
+              <span className="text-red-500 cursor-pointer">Forgot</span>{" "}
+              password ?
             </p>
-            <button>LOGIN</button>
+            <div className="text-center my-2">
+              <button
+                type="button"
+                className="w-1/4 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-pink-500 transition ease-in-out delay-150 hover:duration-300"
+              >
+                Login
+              </button>
+            </div>
           </form>
-          <p>
-            Don't have account? <span className="font-bold"></span>
+          <p className="text-center">
+            Don't have account ?{" "}
+            <span className="font-bold text-red-400 cursor-pointer">
+              Join Us
+            </span>
           </p>
         </div>
         {/* login intro part */}
-        <div className="relative w-1/2">
-          <div className="absolute">
-            <p>
-              Don't have an account!!!{" "}
-              <span className="border-2 p-2">Register Now</span>
+        <div className="w-1/2 p-11 flex flex-col relative bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-r">
+          <div className="my-3">
+            <p className="text-end">
+              Don't have an account !!!{" "}
+              <span className="border-2 p-2 text-yellow-400 rounded cursor-pointer">
+                Register Now
+              </span>
             </p>
           </div>
-          <div>
-            <h1>
+          <div className="my-3">
+            <h1 className="my-2 font-bold text-3xl">
               {" "}
               Welcome to <br />
               Travel Business Portal
             </h1>
-            <p>Get The Best Deal at</p>
-            <div className="flex">
+            <p className="my-4 text-yellow-400 after_line">
+              Get The Best Deal at
+            </p>
+            <div className="flex my-2">
               {bestDeal.map((deal, i) => (
                 <div className="flex flex-col items-center mr-5" key={i}>
-                  <img className="w-3/4" src={deal.flag} alt="avatar" />
+                  <img
+                    draggable={false}
+                    className="w-10/12"
+                    src={deal.flag}
+                    alt="avatar"
+                  />
                   <p>{deal.name}</p>
                 </div>
               ))}
             </div>
-            <p>We have over 3500+ Customers joined us, now it's your turn.</p>
-            <p>Reservation</p>
-            <div>
+            <p className="my-4">
+              We have over 3500+ Customers joined us, <br /> now it's your turn.
+            </p>
+            <p className="mt-3 mb-1 text-yellow-400 after_line">Reservation</p>
+            <div className="flex items-center">
               <BsFillTelephoneFill />
-              <a href="tel:+8801844656565">
+              <a className="ml-2" href="tel:+8801844656565">
                 +8801844656565, +88 02-55048277(24x7)
               </a>
             </div>
-            <div>
+            <div className="flex items-center">
               <MdEmail />
-              <p>tbp@aotrek.com</p>
+              <p className="ml-2">tbp@aotrek.com</p>
             </div>
           </div>
-          <div className="absolute">
-            <img className="w-1/4" src={tbpLogo} alt="avatar" />
+          <div className="absolute w-1/4 bottom-0 right-0">
+            <img src={tbpLogo} alt="avatar" />
           </div>
         </div>
       </div>
