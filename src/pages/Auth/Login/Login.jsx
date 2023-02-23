@@ -1,10 +1,10 @@
 import React from "react";
-import flight from "../../../assets/icon/home/Flights.svg";
-import hotel from "../../../assets/icon/home/Hotel.svg";
-import rail from "../../../assets/icon/home/Rail.svg";
-import tour from "../../../assets/icon/home/Tour.svg";
-import activity from "../../../assets/icon/home/Activitys.svg";
-import visa from "../../../assets/icon/home/Visa.svg";
+import flight from "../../../assets/icon/Flights.svg";
+import hotel from "../../../assets/icon/Hotel.svg";
+import rail from "../../../assets/icon/Rail.svg";
+import tour from "../../../assets/icon/Tour.svg";
+import activity from "../../../assets/icon/Activity.svg";
+import visa from "../../../assets/icon/Visa.svg";
 import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
@@ -37,9 +37,9 @@ const Login = () => {
   ];
   return (
     <div className="bg-slate-700 min-h-screen flex items-center justify-center">
-      <div>
+      <div className="flex items-center w-3/4 min-h-screen">
         {/* login part */}
-        <div>
+        <div className="w-1/2">
           <h1>LgoIn</h1>
           <form>
             <input type="email" name="" id="" />
@@ -56,7 +56,7 @@ const Login = () => {
           </p>
         </div>
         {/* login intro part */}
-        <div className="relative">
+        <div className="relative w-1/2">
           <div className="absolute">
             <p>
               Don't have an account!!!{" "}
@@ -70,10 +70,10 @@ const Login = () => {
               Travel Business Portal
             </h1>
             <p>Get The Best Deal at</p>
-            <div>
+            <div className="flex">
               {bestDeal.map((deal, i) => (
-                <div key={i}>
-                  <img src={deal.flag} alt="avatar" />
+                <div className="flex flex-col items-center mr-5" key={i}>
+                  <img className="w-3/4" src={deal.flag} alt="avatar" />
                   <p>{deal.name}</p>
                 </div>
               ))}
@@ -92,7 +92,7 @@ const Login = () => {
             </div>
           </div>
           <div className="absolute">
-            <img src={tbpLogo} alt="avatar" />
+            <img className="w-1/4" src={tbpLogo} alt="avatar" />
           </div>
         </div>
       </div>
