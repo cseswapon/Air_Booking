@@ -8,7 +8,8 @@ import visa from "../../../assets/icon/Visa.svg";
 import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
-import '../css/Login.css'
+import "../css/Login.css";
+import { Link } from "react-router-dom";
 const Login = () => {
   const bestDeal = [
     {
@@ -75,7 +76,7 @@ const Login = () => {
           <p className="text-center">
             Don't have account ?{" "}
             <span className="font-bold text-red-400 cursor-pointer">
-              Join Us
+              <Link to="/register">Join Us</Link>
             </span>
           </p>
         </div>
@@ -85,7 +86,7 @@ const Login = () => {
             <p className="text-end">
               Don't have an account !!!{" "}
               <span className="border-2 p-2 text-yellow-400 rounded cursor-pointer">
-                Register Now
+                <Link to="/register">Register Now</Link>
               </span>
             </p>
           </div>

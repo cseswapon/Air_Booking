@@ -1,4 +1,5 @@
 import Login from "../pages/Auth/Login/Login";
+import Register from "../pages/Auth/Register/Register";
 import NotFound from "../pages/NotFound/NotFound";
 import PrivateRoute from "../Private/PrivateRoute";
 import PublicRoute from "../Public/PbulicRoute";
@@ -20,6 +21,14 @@ export const router = createBrowserRouter([
     element: (
       <PublicRoute>
         <Login />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <PublicRoute>
+        <Register />
       </PublicRoute>
     ),
   },
