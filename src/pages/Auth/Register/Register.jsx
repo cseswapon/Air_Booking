@@ -3,9 +3,23 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
 const Register = () => {
+  const stepper = [
+    {
+      number: 1,
+      details: "Company Information",
+    },
+    {
+      number: 2,
+      details: "Account Credential",
+    },
+    {
+      number: 3,
+      details: "Verification",
+    },
+  ];
   return (
     <div className="bg-slate-700 min-h-screen flex items-center justify-center">
-      <div className="flex items-center w-3/4 bg-gradient-to-r from-gray-800 to-gray-900 rounded">
+      <div className="flex items-center bg-gradient-to-r from-gray-800 to-gray-900 rounded">
         {/* login intro part */}
         <div className="w-1/2 p-11 flex flex-col relative text-white">
           <div className="my-3">
@@ -41,67 +55,117 @@ const Register = () => {
         {/* login part */}
         <div className="w-1/2 p-11 bg-slate-50">
           <h1 className="text-center font-bold text-3xl my-3">Sing Up</h1>
+          <div className="flex justify-between text-center my-4">
+            {stepper.map((step, i) => (
+              <div key={i}>
+                <button
+                  disabled
+                  className="bg-blue-500 p-2 rounded-full w-10 text-white"
+                >
+                  {step.number}
+                </button>
+                <p className="text-xs mt-2">
+                  {step.details.split(" ")[0]} <br />
+                  {step.details.split(" ")[1]}
+                </p>
+              </div>
+            ))}
+          </div>
           <form>
-            <div className="flex items-center">
-              <div>
+            <div className="flex items-center justify-between">
+              <div className="mr-1">
                 <label htmlFor="cname">
                   Company Name <span className="text-red-500">*</span>
                 </label>
                 <br />
-                <input type="text" name="cname" id="cname" required />
+                <input
+                  className="w-12/12 my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                  type="text"
+                  name="cname"
+                  id="cname"
+                  required
+                />
               </div>
-              <div>
+              <div className="ml-1">
                 <label htmlFor="pname">
-                  Contact Persons Name <span className="text-red-500">*</span>
+                  Person Name <span className="text-red-500">*</span>
                 </label>
                 <br />
-                <input type="text" name="pname" id="pname" required />
+                <input
+                  className="w-12/12 my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                  type="text"
+                  name="pname"
+                  id="pname"
+                  required
+                />
               </div>
             </div>
-            <div className="flex items-center">
-              <div>
-                <label htmlFor="district">
-                  Select District <span className="text-red-500">*</span>
+            <div className="flex items-center justify-between">
+              <div className="mr-1">
+                <label htmlFor="division">
+                  Select Division <span className="text-red-500">*</span>
                 </label>
                 <br />
-                <select name="district" id="district">
+                <select
+                  className="w-52 my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                  name="division"
+                  id="division"
+                >
                   <option value="bangladesh">Bangladesh</option>
                   <option value="india">Bangladesh</option>
                 </select>
               </div>
-              <div>
+              <div className="ml-1">
                 <label htmlFor="country">
                   Country <span className="text-red-500">*</span>
                 </label>
                 <br />
-                <select name="country" id="country">
+                <select
+                  className="w-52 my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                  name="country"
+                  id="country"
+                >
                   <option value="bangladesh">Bangladesh</option>
                   <option value="india">Bangladesh</option>
                 </select>
               </div>
             </div>
-            <div className="flex items-center">
-              <div>
+            <div className="flex items-center justify-between">
+              <div className="mr-1">
                 <label htmlFor="district">
                   Select District <span className="text-red-500">*</span>
                 </label>
                 <br />
-                <select name="district" id="district">
+                <select
+                  className="w-52 my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                  name="district"
+                  id="district"
+                >
                   <option value="bangladesh">Bangladesh</option>
                   <option value="india">Bangladesh</option>
                 </select>
               </div>
-              <div>
+              <div className="mr-1">
                 <label htmlFor="division">
                   Contact Number <span className="text-red-500">*</span>
                 </label>
                 <br />
-                <select name="division" id="division">
-                  <option disabled value="bangladesh">
-                    ---Select Number---
-                  </option>
-                  <option value="india">+88</option>
-                </select>
+                <div className="flex items-center">
+                  <select
+                    className="w-20 my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                    name="division"
+                    id="division"
+                  >
+                    <option disabled value="bangladesh">
+                      ---Select Number---
+                    </option>
+                    <option value="india">+88</option>
+                  </select>
+                  <input
+                    className="w-44 my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                    type="text"
+                  />
+                </div>
               </div>
             </div>
             <button
