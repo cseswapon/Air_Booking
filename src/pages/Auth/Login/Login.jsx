@@ -10,6 +10,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import "../css/Login.css";
 import { Link } from "react-router-dom";
+import './Login.css';
 const Login = () => {
   const bestDeal = [
     {
@@ -38,11 +39,11 @@ const Login = () => {
     },
   ];
   return (
-    <div className="bg-slate-700 min-h-screen flex items-center justify-center">
-      <div className="flex items-center w-3/4 bg-slate-100 rounded">
+    <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center relative">
+      <div className="lg:flex items-center w-3/4 bg-slate-100 rounded absolute lg:static right-2/4 top_down lg:right-4/4 translate-x-1/2 lg:translate-x-0	translate-y-1/2 lg:translate-y-0">
         {/* login part */}
-        <div className="w-1/2 p-11">
-          <h1 className="text-center font-bold text-3xl my-3">Login</h1>
+        <div className="lg:w-1/2 lg:p-11">
+          <h1 className="text-center font-bold text-3xl lg:my-3">Login</h1>
           <form>
             <input
               className="w-full my-2 p-3 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
@@ -59,15 +60,10 @@ const Login = () => {
               name=""
               id=""
             />
-            <br />
-            <p className="text-center my-2">
-              <span className="text-red-500 cursor-pointer">Forgot</span>{" "}
-              password ?
-            </p>
             <div className="text-center my-2">
               <button
                 type="button"
-                className="w-1/4 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-pink-500 transition ease-in-out delay-150 hover:duration-300"
+                className="w-1/4 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 hover:duration-300"
               >
                 Login
               </button>
@@ -81,7 +77,7 @@ const Login = () => {
           </p>
         </div>
         {/* login intro part */}
-        <div className="w-1/2 p-11 flex flex-col relative bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-r">
+        <div className="w-1/2 p-11 lg:flex hidden flex-col relative bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-r">
           <div className="my-3">
             <p className="text-end">
               Don't have an account !!!{" "}
