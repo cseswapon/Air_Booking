@@ -4,11 +4,12 @@ import { MdEmail } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
-import { steppers } from "../../../redux/features/register/registerSlice";
+import { steppers,password,confirmPass } from "../../../redux/features/register/registerSlice";
+import "./Register.css";
 const Register = () => {
   const dispatch = useDispatch();
-  const { step } = useSelector((state) => state.register);
-  // console.log(step);
+  const singUpValue = useSelector((state) => state.register);
+  console.log(singUpValue);
   const stepper = [
     {
       number: 1,
@@ -62,25 +63,31 @@ const Register = () => {
           </div>
         </div>
         {/* login part */}
-        <div className={`${step === 0 ? "w-2/2" : "lg:w-1/2"} p-11 bg-slate-50`}>
+        <div
+          className={`${
+            singUpValue?.step === 0 ? "w-2/2" : "lg:w-1/2"
+          } p-11 bg-slate-50`}
+        >
           <h1 className="text-center font-bold text-3xl my-4">Sing Up</h1>
           <div className="flex justify-center text-center my-5">
-            {stepper.map((step, i) => (
+            {stepper.map((newStep, i) => (
               <div className="mx-8" key={i}>
                 <button
                   disabled
-                  className="bg-blue-500 p-2 rounded-full w-10 text-white"
+                  className={`bg-blue-500 p-2 rounded-full w-10 text-white relative ${
+                    singUpValue?.step === 1 && "steps_" + i + 1
+                  } ${singUpValue?.step === 0 && "step_" + i}`}
                 >
-                  {step.number}
+                  {newStep.number}
                 </button>
                 <p className="text-xs mt-2">
-                  {step.details.split(" ")[0]} <br />
-                  {step.details.split(" ")[1]}
+                  {newStep.details.split(" ")[0]} <br />
+                  {newStep.details.split(" ")[1]}
                 </p>
               </div>
             ))}
           </div>
-          {step === 0 && (
+          {singUpValue?.step === 0 && (
             <form onSubmit={handelSubmit}>
               <div className="lg:flex items-center justify-between">
                 <div className="lg:mr-1">
@@ -175,7 +182,7 @@ const Register = () => {
               </button>
             </form>
           )}
-          {step === 1 && (
+          {singUpValue?.step === 1 && (
             <form>
               <div className="lg:mr-1">
                 <label htmlFor="cname">
@@ -184,9 +191,10 @@ const Register = () => {
                 <br />
                 <input
                   className="my-1 w-full p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
-                  type="text"
+                  type="password"
                   name="cname"
                   id="cname"
+                  onChange={(e) => dispatch(password(e.target.value))}
                   required
                 />
               </div>
@@ -196,8 +204,9 @@ const Register = () => {
                 </label>
                 <br />
                 <input
+                  onChange={(e) => dispatch(confirmPass(e.target.value))}
                   className="my-1 w-full p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
-                  type="text"
+                  type="password"
                   name="cname"
                   id="cname"
                   required
