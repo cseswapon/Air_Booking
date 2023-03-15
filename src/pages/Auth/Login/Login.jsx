@@ -10,7 +10,12 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import "../css/Login.css";
 import { Link } from "react-router-dom";
-import './Login.css';
+import "./Login.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createEmail,
+  createPassword,
+} from "../../../redux/features/login/loginSlice";
 const Login = () => {
   const bestDeal = [
     {
@@ -38,6 +43,10 @@ const Login = () => {
       flag: visa,
     },
   ];
+  const dispatch = useDispatch();
+  const {
+    login: { email, password },
+  } = useSelector((state) => state);
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center relative">
       <div className="lg:flex items-center w-3/4 bg-slate-100 rounded absolute lg:static right-2/4 top_down lg:right-4/4 translate-x-1/2 lg:translate-x-0	translate-y-1/2 lg:translate-y-0">
@@ -49,16 +58,16 @@ const Login = () => {
               className="w-full my-2 p-3 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
               placeholder="Email Address"
               type="email"
-              name=""
-              id=""
+              defaultValue={email}
+              onChange={(e) => dispatch(createEmail(e.target.value))}
             />
             <br />
             <input
               className="w-full my-2 p-3 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
               placeholder="Password"
               type="password"
-              name=""
-              id=""
+              defaultValue={password}
+              onChange={(e) => dispatch(createPassword(e.target.value))}
             />
             <div className="text-center my-2">
               <button

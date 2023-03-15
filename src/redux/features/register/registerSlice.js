@@ -2,6 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   step: 0,
+  companyName: "",
+  personName: "",
+  country: "bangladesh",
+  division: "",
+  district: [],
+  districtValue:'',
+  number: "",
   password: "",
   confirmPass: "",
 };
@@ -13,6 +20,27 @@ export const registerSlice = createSlice({
     steppers: (state, action) => {
       state.step = action.payload;
     },
+    companyName: (state, { payload }) => {
+      state.companyName = payload;
+    },
+    personName: (state, { payload }) => {
+      state.personName = payload;
+    },
+    country: (state, { payload }) => {
+      state.country = payload;
+    },
+    division: (state, { payload }) => {
+      state.division = payload;
+    },
+    district: (state, { payload }) => {
+      state.district = payload;
+    },
+    districtValue: (state, { payload }) => {
+      state.districtValue = payload;
+    },
+    number: (state, { payload }) => {
+      state.number = payload;
+    },
     password: (state, { payload }) => {
       state.password = payload;
     },
@@ -22,6 +50,17 @@ export const registerSlice = createSlice({
   },
 });
 
-export const { steppers, password, confirmPass } = registerSlice.actions;
+export const {
+  steppers,
+  companyName,
+  personName,
+  country,
+  division,
+  district,
+  districtValue,
+  number,
+  password,
+  confirmPass,
+} = registerSlice.actions;
 
 export default registerSlice.reducer;

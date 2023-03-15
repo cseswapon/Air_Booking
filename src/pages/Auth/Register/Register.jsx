@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { countries } from "../../../assets/db/fackDb";
 import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
-import { steppers,password,confirmPass } from "../../../redux/features/register/registerSlice";
+import {
+  steppers,
+  password,
+  confirmPass,
+  companyName,
+  personName,
+  country,
+  division,
+  district,
+  number,
+  districtValue,
+} from "../../../redux/features/register/registerSlice";
 import "./Register.css";
 const Register = () => {
   const dispatch = useDispatch();
   const singUpValue = useSelector((state) => state.register);
-  console.log(singUpValue);
+  // console.log(singUpValue);
   const stepper = [
     {
       number: 1,
@@ -25,6 +37,17 @@ const Register = () => {
     dispatch(steppers(1));
     console.log("First From");
   };
+  // console.log(countries[0].state.Bangladesh[0].divisions);
+  useEffect(() => {
+    const countrys = countries[0].state.Bangladesh[0].divisions.map(
+      (name) => name
+    );
+    const countryFilter = countrys.filter(
+      (name) => name.name === singUpValue?.division
+    );
+    dispatch(district(countryFilter[0]?.district));
+  }, [singUpValue?.division, dispatch]);
+
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center">
       <div className="lg:flex items-center justify-between lg:w-3/4 w-full bg-gradient-to-r from-gray-800 to-gray-900 rounded relative">
@@ -98,6 +121,8 @@ const Register = () => {
                   <input
                     className="my-1 w-full p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
                     type="text"
+                    onChange={(e) => dispatch(companyName(e.target.value))}
+                    defaultValue={singUpValue?.companyName}
                     name="cname"
                     id="cname"
                     required
@@ -111,6 +136,8 @@ const Register = () => {
                   <input
                     className="my-1 p-2 bg-white w-full drop-shadow-sm focus:outline-none border-0 rounded"
                     type="text"
+                    onChange={(e) => dispatch(personName(e.target.value))}
+                    defaultValue={singUpValue?.personName}
                     name="pname"
                     id="pname"
                     required
@@ -125,10 +152,11 @@ const Register = () => {
                   <br />
                   <select
                     className="w-full my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
-                    name=""
-                    id=""
+                    required
+                    onChange={(e) => dispatch(country(e.target.value))}
+                    defaultValue={singUpValue?.country}
                   >
-                    <option value="">Bangladesh</option>
+                    <option value="bangladesh">Bangladesh</option>
                   </select>
                 </div>
                 <div className="lg:ml-1">
@@ -137,11 +165,20 @@ const Register = () => {
                   </label>
                   <br />
                   <select
+                    defaultValue={singUpValue?.division}
+                    onChange={(e) => dispatch(division(e.target.value))}
                     className="w-full my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
-                    name=""
-                    id=""
                   >
-                    <option value="">Bangladesh</option>
+                    <option disabled selected>
+                      select division
+                    </option>
+                    {countries[0].state.Bangladesh[0].divisions.map(
+                      (name, i) => (
+                        <option key={i} value={name.name}>
+                          {name.name}
+                        </option>
+                      )
+                    )}
                   </select>
                 </div>
               </div>
@@ -153,11 +190,18 @@ const Register = () => {
                   <br />
                   <select
                     className="w-full my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
-                    name=""
-                    id=""
+                    defaultValue={singUpValue?.districtValue}
+                    onChange={(e) => dispatch(districtValue(e.target.value))}
+                    required
                   >
-                    <option value="">Dhaka</option>
-                    <option value="">Tangail</option>
+                    <option disabled selected>
+                      select district
+                    </option>
+                    {singUpValue?.district?.map((name, i) => (
+                      <option key={i} value={name}>
+                        {name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="lg:ml-1">
@@ -166,11 +210,11 @@ const Register = () => {
                   </label>
                   <br />
                   <input
-                    required
                     className="my-1 p-2 w-full bg-white drop-shadow-sm focus:outline-none border-0 rounded"
                     type="text"
-                    name=""
-                    id=""
+                    onChange={(e) => dispatch(number(e.target.value))}
+                    defaultValue={singUpValue?.number}
+                    required
                   />
                 </div>
               </div>
@@ -194,6 +238,7 @@ const Register = () => {
                   type="password"
                   name="cname"
                   id="cname"
+                  defaultValue={singUpValue?.password}
                   onChange={(e) => dispatch(password(e.target.value))}
                   required
                 />
@@ -204,6 +249,7 @@ const Register = () => {
                 </label>
                 <br />
                 <input
+                  defaultValue={singUpValue?.confirmPass}
                   onChange={(e) => dispatch(confirmPass(e.target.value))}
                   className="my-1 w-full p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
                   type="password"
