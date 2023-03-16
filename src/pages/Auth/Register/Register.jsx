@@ -16,6 +16,7 @@ import {
   district,
   number,
   districtValue,
+  email,
 } from "../../../redux/features/register/registerSlice";
 import "./Register.css";
 const Register = () => {
@@ -32,11 +33,6 @@ const Register = () => {
       details: "Account Credential",
     },
   ];
-  const handelSubmit = (e) => {
-    e.preventDefault();
-    dispatch(steppers(1));
-    console.log("First From");
-  };
   // console.log(countries[0].state.Bangladesh[0].divisions);
   useEffect(() => {
     const countrys = countries[0].state.Bangladesh[0].divisions.map(
@@ -47,7 +43,26 @@ const Register = () => {
     );
     dispatch(district(countryFilter[0]?.district));
   }, [singUpValue?.division, dispatch]);
+const handelSubmit = (e) => {
+    e.preventDefault();
+    dispatch(steppers(1));
+  };
 
+  const handelRegister = (e) => {
+    e.preventDefault();
+    const data = {
+      email: singUpValue.email,
+      password: singUpValue.password,
+      companyName: singUpValue.companyName,
+      personName: singUpValue.personName,
+      country: singUpValue.country,
+      division: singUpValue.division,
+      district: singUpValue.districtValue,
+      phoneNumber: singUpValue.number,
+      regTimeDate: new Date(new Date())
+    }
+    console.log(data);
+  }
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center">
       <div className="lg:flex items-center justify-between lg:w-3/4 w-full bg-gradient-to-r from-gray-800 to-gray-900 rounded relative">
@@ -121,8 +136,12 @@ const Register = () => {
                   <input
                     className="my-1 w-full p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
                     type="text"
-                    onChange={(e) => dispatch(companyName(e.target.value))}
-                    defaultValue={singUpValue?.companyName}
+                    onChange={(e) =>
+                      dispatch(
+                        companyName(e.target.value.replace(/[^a-z A-Z]/gi, ""))
+                      )
+                    }
+                    value={singUpValue?.companyName}
                     name="cname"
                     id="cname"
                     required
@@ -136,8 +155,12 @@ const Register = () => {
                   <input
                     className="my-1 p-2 bg-white w-full drop-shadow-sm focus:outline-none border-0 rounded"
                     type="text"
-                    onChange={(e) => dispatch(personName(e.target.value))}
-                    defaultValue={singUpValue?.personName}
+                    onChange={(e) =>
+                      dispatch(
+                        personName(e.target.value.replace(/[^a-z A-Z]/gi, ""))
+                      )
+                    }
+                    value={singUpValue?.personName}
                     name="pname"
                     id="pname"
                     required
@@ -169,7 +192,7 @@ const Register = () => {
                     onChange={(e) => dispatch(division(e.target.value))}
                     className="w-full my-1 p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       select division
                     </option>
                     {countries[0].state.Bangladesh[0].divisions.map(
@@ -194,7 +217,7 @@ const Register = () => {
                     onChange={(e) => dispatch(districtValue(e.target.value))}
                     required
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       select district
                     </option>
                     {singUpValue?.district?.map((name, i) => (
@@ -212,8 +235,11 @@ const Register = () => {
                   <input
                     className="my-1 p-2 w-full bg-white drop-shadow-sm focus:outline-none border-0 rounded"
                     type="text"
-                    onChange={(e) => dispatch(number(e.target.value))}
-                    defaultValue={singUpValue?.number}
+                    onChange={(e) =>
+                      dispatch(number(e.target.value.replace(/[^0-9]/gi, "")))
+                    }
+                    maxLength={11}
+                    value={singUpValue?.number}
                     required
                   />
                 </div>
@@ -227,7 +253,22 @@ const Register = () => {
             </form>
           )}
           {singUpValue?.step === 1 && (
-            <form>
+            <form onSubmit={handelRegister}>
+              <div className="lg:mr-1">
+                <label htmlFor="email">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <br />
+                <input
+                  className="my-1 w-full p-2 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={singUpValue?.email}
+                  onChange={(e) => dispatch(email(e.target.value))}
+                  required
+                />
+              </div>
               <div className="lg:mr-1">
                 <label htmlFor="cname">
                   Password <span className="text-red-500">*</span>
@@ -262,13 +303,17 @@ const Register = () => {
                 <button
                   onClick={() => dispatch(steppers(0))}
                   type="button"
-                  className="lg:w-2/4 w-full my-4 mr-1 bg-blue-300 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 hover:duration-300"
+                  className="lg:w-2/4 w-full my-4 mr-1 bg-blue-300 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 hover:duration-300 cursor-pointer"
                 >
                   Pervious
                 </button>
                 <button
                   type="submit"
-                  className="lg:w-2/4 w-full my-4 ml-1 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 hover:duration-300"
+                  className={`lg:w-2/4 w-full my-4 ml-1 ${
+                    singUpValue?.password !== singUpValue?.confirmPass
+                      ? "cursor-not-allowed"
+                      : "hover:text-white hover:bg-sky-500 cursor-pointer"
+                  } bg-blue-900 p-1 text-white rounded transition ease-in-out delay-150 hover:duration-300`}
                 >
                   Submit
                 </button>

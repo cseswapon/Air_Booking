@@ -9,6 +9,7 @@ const initialState = {
   district: [],
   districtValue:'',
   number: "",
+  email:"",
   password: "",
   confirmPass: "",
 };
@@ -41,6 +42,9 @@ export const registerSlice = createSlice({
     number: (state, { payload }) => {
       state.number = payload;
     },
+    email: (state, { payload }) => {
+      state.email = payload;
+    },
     password: (state, { payload }) => {
       state.password = payload;
     },
@@ -59,6 +63,7 @@ export const {
   district,
   districtValue,
   number,
+  email,
   password,
   confirmPass,
 } = registerSlice.actions;
