@@ -5,6 +5,7 @@ import { decrement, increment } from "./redux/features/counter/counterSlice";
 function App() {
   const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
+
   return (
     <>
       <div>

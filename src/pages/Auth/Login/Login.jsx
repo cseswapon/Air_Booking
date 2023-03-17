@@ -16,6 +16,7 @@ import {
   createEmail,
   createPassword,
 } from "../../../redux/features/login/loginSlice";
+import { useLoginUserMutation } from "../../../redux/features/api/apiSlice";
 const Login = () => {
   const bestDeal = [
     {
@@ -47,13 +48,24 @@ const Login = () => {
   const {
     login: { email, password },
   } = useSelector((state) => state);
+  const [login, { isError, isLoading, isSuccess,data }] = useLoginUserMutation();
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email,
+      password,
+    };
+    // console.log(data);
+    login(data);
+  };
+  console.log(data);
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center relative">
       <div className="lg:flex items-center w-3/4 bg-slate-100 rounded absolute lg:static right-2/4 top_down lg:right-4/4 translate-x-1/2 lg:translate-x-0	translate-y-1/2 lg:translate-y-0">
         {/* login part */}
         <div className="lg:w-1/2 lg:p-11">
           <h1 className="text-center font-bold text-3xl lg:my-3">Login</h1>
-          <form>
+          <form onSubmit={handelSubmit}>
             <input
               className="w-full my-2 p-3 bg-white drop-shadow-sm focus:outline-none border-0 rounded"
               placeholder="Email Address"
@@ -71,7 +83,7 @@ const Login = () => {
             />
             <div className="text-center my-2">
               <button
-                type="button"
+                type="submit"
                 className="w-1/4 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 hover:duration-300"
               >
                 Login

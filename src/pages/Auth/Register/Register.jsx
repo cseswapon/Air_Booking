@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { countries } from "../../../assets/db/fackDb";
 import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
+import { useAddUserMutation } from "../../../redux/features/api/apiSlice";
 import {
   steppers,
   password,
@@ -22,7 +23,7 @@ import "./Register.css";
 const Register = () => {
   const dispatch = useDispatch();
   const singUpValue = useSelector((state) => state.register);
-  // console.log(singUpValue);
+  const [addUser, { isError, isLoading, isSuccess }] = useAddUserMutation();
   const stepper = [
     {
       number: 1,
@@ -33,7 +34,6 @@ const Register = () => {
       details: "Account Credential",
     },
   ];
-  // console.log(countries[0].state.Bangladesh[0].divisions);
   useEffect(() => {
     const countrys = countries[0].state.Bangladesh[0].divisions.map(
       (name) => name
@@ -43,7 +43,7 @@ const Register = () => {
     );
     dispatch(district(countryFilter[0]?.district));
   }, [singUpValue?.division, dispatch]);
-const handelSubmit = (e) => {
+  const handelSubmit = (e) => {
     e.preventDefault();
     dispatch(steppers(1));
   };
@@ -54,15 +54,16 @@ const handelSubmit = (e) => {
       email: singUpValue.email,
       password: singUpValue.password,
       companyName: singUpValue.companyName,
-      personName: singUpValue.personName,
+      personalName: singUpValue.personName,
       country: singUpValue.country,
       division: singUpValue.division,
       district: singUpValue.districtValue,
-      phoneNumber: singUpValue.number,
-      regTimeDate: new Date(new Date())
-    }
-    console.log(data);
-  }
+      contactNumber: singUpValue.number,
+    };
+    // console.log(data);
+    addUser(data);
+  };
+  // console.log("hello process", process.env.REACT_APP_API_URL);
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center">
       <div className="lg:flex items-center justify-between lg:w-3/4 w-full bg-gradient-to-r from-gray-800 to-gray-900 rounded relative">
@@ -229,7 +230,7 @@ const handelSubmit = (e) => {
                 </div>
                 <div className="lg:ml-1">
                   <label htmlFor="country">
-                    Concat Number <span className="text-red-500">*</span>
+                    Contact Number <span className="text-red-500">*</span>
                   </label>
                   <br />
                   <input
@@ -308,6 +309,11 @@ const handelSubmit = (e) => {
                   Pervious
                 </button>
                 <button
+                  disabled={
+                    singUpValue?.password === singUpValue?.confirmPass
+                      ? false
+                      : true
+                  }
                   type="submit"
                   className={`lg:w-2/4 w-full my-4 ml-1 ${
                     singUpValue?.password !== singUpValue?.confirmPass
@@ -315,7 +321,7 @@ const handelSubmit = (e) => {
                       : "hover:text-white hover:bg-sky-500 cursor-pointer"
                   } bg-blue-900 p-1 text-white rounded transition ease-in-out delay-150 hover:duration-300`}
                 >
-                  Submit
+                  {isLoading ? "Process..." : "Submit"}
                 </button>
               </div>
             </form>
