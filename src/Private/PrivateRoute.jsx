@@ -1,30 +1,27 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-
+import useCookies from "../hooks/useCookies";
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
-  const user = {
-    // email: "swaponsaha@gmail.com",
-  };
-
-  // ----------------> use to custom hook <----------------
-
-  // if (isLoading) {
-  //   return (
-  //     <div className="login-from">
-  //       <div className="spinner-border text-danger" role="status">
-  //         <span className="visually-hidden">Loading...</span>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
-  // ----------------> if user login navigate other pages <----------------
-
-  if (user?.email) {
-    return children;
+  let useCooke = useCookies("user_login");
+  if (useCooke === null) {
+    return (
+      localStorage.clear(),
+      (<Navigate to="/login" state={{ from: location }} />)
+    );
   }
-  return <Navigate to="/login" state={{ from: location }} />;
+  const userLogIn = JSON.parse(localStorage.getItem("login"))?.userLogIn;
+  if (!userLogIn) {
+    const cookies = document.cookie.split(";");
+    cookies.forEach((cookie) => {
+      const name = cookie.trim().split("=")[0];
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    });
+  } else if (userLogIn && useCooke) {
+    return children;
+  } else {
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
 };
 
 export default PrivateRoute;

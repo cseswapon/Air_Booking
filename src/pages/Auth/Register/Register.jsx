@@ -63,6 +63,12 @@ const Register = () => {
     // console.log(data);
     addUser(data);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      window.location.href = "/login";
+    }
+  }, [isSuccess]);
+
   // console.log("hello process", process.env.REACT_APP_API_URL);
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center">
@@ -245,10 +251,7 @@ const Register = () => {
                   />
                 </div>
               </div>
-              <button
-                type="submit"
-                className="lg:w-1/4 w-full my-4 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 hover:duration-300"
-              >
+              <button type="submit" className="btn-blue my-2">
                 Submit
               </button>
             </form>

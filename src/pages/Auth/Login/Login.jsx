@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import flight from "../../../assets/icon/Flights.svg";
 import hotel from "../../../assets/icon/Hotel.svg";
 import rail from "../../../assets/icon/Rail.svg";
@@ -9,7 +9,7 @@ import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import "../css/Login.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -48,17 +48,39 @@ const Login = () => {
   const {
     login: { email, password },
   } = useSelector((state) => state);
-  const [login, { isError, isLoading, isSuccess,data }] = useLoginUserMutation();
-  const handelSubmit = (e) => {
+  const [login, { isError, isLoading, isSuccess, data }] =
+    useLoginUserMutation();
+  const navigate = useNavigate();
+  const handelSubmit = async (e) => {
     e.preventDefault();
-    const data = {
+    const result = {
       email,
       password,
     };
-    // console.log(data);
-    login(data);
+    login(result);
   };
-  console.log(data);
+  // cookies set with a login info
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      let date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+  /* isSuccess && <Navigate to="/" />*/
+  useEffect(() => {
+    if (isSuccess) {
+      localStorage.setItem(
+        "login",
+        JSON.stringify({ userLogIn: true, token: data.access_token })
+      );
+      setCookie("user_login", data?.data?.email, 1);
+      navigate("/");
+    }
+  }, [isSuccess]);
+
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center relative">
       <div className="lg:flex items-center w-3/4 bg-slate-100 rounded absolute lg:static right-2/4 top_down lg:right-4/4 translate-x-1/2 lg:translate-x-0	translate-y-1/2 lg:translate-y-0">
@@ -84,7 +106,7 @@ const Login = () => {
             <div className="text-center my-2">
               <button
                 type="submit"
-                className="w-1/4 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 hover:duration-300"
+                className="w-1/4 bg-blue-900 p-1 text-white rounded hover:text-white hover:bg-sky-500 transition ease-in-out delay-150 duration-300"
               >
                 Login
               </button>

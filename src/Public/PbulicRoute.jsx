@@ -1,12 +1,12 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import useCookies from "../hooks/useCookies";
 
 const PublicRoute = ({ children }) => {
-  const user = {
-    // email: "swaponsaha@gmail.com",
-  };
   const location = useLocation();
-  if (user?.email) {
+  const userLogIn = JSON.parse(localStorage.getItem("login"))?.userLogIn;
+  let useCooke = useCookies("user_login");
+  if (userLogIn && useCooke) {
     return <Navigate to="/" state={{ from: location }} />;
   }
   return children;
