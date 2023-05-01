@@ -7,7 +7,7 @@ export default function withDashboard(Component) {
     return (
       <Fragment>
         <div className="flex flex-1">
-          <div className="w-64 bg-blue-950 text-white h-screen">
+          <div className="w-64 bg-blue-950 text-white h-screen relative">
             <SideBar />
           </div>
           <div className="w-full">
