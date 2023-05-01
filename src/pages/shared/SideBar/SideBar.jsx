@@ -2,6 +2,9 @@ import React from "react";
 import logo from "../../../assets/icon/logo/TBP.png";
 import image from "../../../assets/image/swapon.jpg";
 import { HiLogout } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import {FaArrowRight} from 'react-icons/fa'
+import "./SideBar.css";
 const SideBar = () => {
   const handelLogout = () => {
     let cookies = document.cookie.split(";");
@@ -39,46 +42,69 @@ const SideBar = () => {
             <p className="text-xs">Agent Id: 0001</p>
           </div>
         </div>
-        <ul className="my-2">
-          <li>
+        <ul className="my-2 px-2">
+          <li className="menu text-[14px]">
             Booking
-            <ul>
-              <li>Air Ticket</li>
-              <li>Hotel Booking</li>
+            <ul className="sub-menu">
+              <li>
+                <Link to="airTicket"><FaArrowRight className="inline"/> Air Ticket</Link>
+              </li>
+              <li>
+                <Link to="hotelBooking"><FaArrowRight className="inline"/> Hotel Booking</Link>
+              </li>
             </ul>
           </li>
-          <li>
+          <li className="menu text-[14px]">
             Transaction
-            <ul>
-              <li>Payment</li>
-              <li>Main Statement</li>
+            <ul className="sub-menu">
+              <li>
+                <Link to="payment"><FaArrowRight className="inline"/> Payment</Link>
+              </li>
+              <li>
+                <Link to="mainStatement"><FaArrowRight className="inline"/> Main Statement</Link>
+              </li>
             </ul>
           </li>
-          <li>
+          <li className="menu text-[14px]">
             Commissions
-            <ul>
-              <li>Flights Packages</li>
-              <li>Hotel Packages</li>
+            <ul className="sub-menu">
+              <li>
+                <Link to="flightsPackages"><FaArrowRight className="inline"/> Flights Packages</Link>
+              </li>
+
+              <li>
+                <Link to="hotelPackages"><FaArrowRight className="inline"/> Hotel Packages</Link>
+              </li>
             </ul>
           </li>
-          <li>
+          <li className="menu text-[14px]">
             Setting
-            <ul>
-              <li>Profile Settings</li>
-              <li>Currency</li>
+            <ul className="sub-menu">
+              <li>
+                <Link to="profileSettings"><FaArrowRight className="inline"/> Profile Settings</Link>
+              </li>
+              <li>
+                <Link to="currency"><FaArrowRight className="inline"/> Currency</Link>
+              </li>
             </ul>
           </li>
-          <li>
+          <li className="menu text-[14px]">
             Sale
-            <ul>
-              <li>Total Sales</li>
+            <ul className="sub-menu">
+              <li>
+                <Link to="totalSales"><FaArrowRight className="inline"/> Total Sales</Link>
+              </li>
             </ul>
           </li>
-          <li>
+          <li className="menu text-[14px]">
             User
-            <ul>
-              <li>Admins</li>
-              <li>Agent</li>
+            <ul className="sub-menu">
+              <li>
+                <Link to="admins"><FaArrowRight className="inline"/> Admins</Link>
+              </li>
+              <li>
+                <Link to="agent"><FaArrowRight className="inline"/> Agent</Link>
+              </li>
             </ul>
           </li>
         </ul>

@@ -1,0 +1,26 @@
+.sub-menu {
+  display: none;
+  transition: all 1s ease;
+}
+.menu {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.menu:hover{
+    cursor: pointer;
+}
+.sub-menu > li > a {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+.sub-menu > li > a:last-child {
+  margin-bottom: 0px;
+}
+.sub-menu > li > a:hover {
+  color: yellow;
+}
+.menu:hover .sub-menu {
+  display: block;
+  transition: all 1s ease;
+}
