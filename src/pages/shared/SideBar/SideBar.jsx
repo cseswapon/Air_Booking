@@ -2,8 +2,12 @@ import React from "react";
 import logo from "../../../assets/icon/logo/TBP.png";
 import image from "../../../assets/image/swapon.jpg";
 import { HiLogout } from "react-icons/hi";
+import { TbBrandBooking } from "react-icons/tb";
+import { AiOutlineTransaction, AiTwotoneSetting } from "react-icons/ai";
+import { RiGitRepositoryCommitsFill } from "react-icons/ri";
+import { FaSellsy, FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {FaArrowRight} from 'react-icons/fa'
+import { FaArrowRight } from "react-icons/fa";
 import "./SideBar.css";
 const SideBar = () => {
   const handelLogout = () => {
@@ -21,13 +25,15 @@ const SideBar = () => {
     <>
       <div>
         <div>
-          <img
-            draggable="false"
-            style={{ marginLeft: "auto" }}
-            className="w-3/12"
-            src={logo}
-            alt="avatar"
-          />
+          <Link to="/">
+            <img
+              draggable="false"
+              style={{ marginLeft: "auto" }}
+              className="w-3/12"
+              src={logo}
+              alt="avatar"
+            />
+          </Link>
         </div>
         <div className="flex items-center border-b-2 border-gray-200 py-3">
           <div>
@@ -44,66 +50,95 @@ const SideBar = () => {
         </div>
         <ul className="my-2 px-2">
           <li className="menu text-[14px]">
-            Booking
+            <TbBrandBooking className="inline-block text-2xl me-2" /> Booking
             <ul className="sub-menu">
               <li>
-                <Link to="/airTicket"><FaArrowRight className="inline"/> Air Ticket</Link>
+                <Link to="/airTicket">
+                  <FaArrowRight className="inline" /> Air Ticket
+                </Link>
               </li>
               <li>
-                <Link to="/hotelBooking"><FaArrowRight className="inline"/> Hotel Booking</Link>
+                <Link to="/hotelBooking">
+                  <FaArrowRight className="inline" /> Hotel Booking
+                </Link>
               </li>
             </ul>
           </li>
           <li className="menu text-[14px]">
+            <AiOutlineTransaction className="inline-block text-2xl me-2" />{" "}
             Transaction
             <ul className="sub-menu">
               <li>
-                <Link to="/payment"><FaArrowRight className="inline"/> Payment</Link>
+                <Link to="/payment">
+                  <FaArrowRight className="inline" /> Payment
+                </Link>
               </li>
               <li>
-                <Link to="/mainStatement"><FaArrowRight className="inline"/> Main Statement</Link>
+                <Link to="/mainStatement">
+                  <FaArrowRight className="inline" /> Main Statement
+                </Link>
               </li>
             </ul>
           </li>
           <li className="menu text-[14px]">
+            <RiGitRepositoryCommitsFill className="inline-block text-2xl me-2" />{" "}
             Commissions
             <ul className="sub-menu">
               <li>
-                <Link to="/flightsPackages"><FaArrowRight className="inline"/> Flights Packages</Link>
+                <Link to="/flightsPackages">
+                  <FaArrowRight className="inline" /> Flights Packages
+                </Link>
               </li>
 
               <li>
-                <Link to="/hotelPackages"><FaArrowRight className="inline"/> Hotel Packages</Link>
+                <Link to="/hotelPackages">
+                  <FaArrowRight className="inline" /> Hotel Packages
+                </Link>
               </li>
             </ul>
           </li>
           <li className="menu text-[14px]">
-            Setting
+            <AiTwotoneSetting className="inline-block text-2xl me-2" /> Setting
             <ul className="sub-menu">
               <li>
-                <Link to="/profileSettings"><FaArrowRight className="inline"/> Profile Settings</Link>
+                <Link to="/profileSettings">
+                  <FaArrowRight className="inline" /> Profile Settings
+                </Link>
               </li>
               <li>
-                <Link to="/currency"><FaArrowRight className="inline"/> Currency</Link>
+                <Link to="/currency">
+                  <FaArrowRight className="inline" /> Currency
+                </Link>
+              </li>
+              <li>
+                <Link to="/report">
+                  <FaArrowRight className="inline" /> Report
+                </Link>
               </li>
             </ul>
           </li>
           <li className="menu text-[14px]">
-            Sale
+            <FaSellsy className="inline-block text-2xl me-2" /> Sale
             <ul className="sub-menu">
               <li>
-                <Link to="/totalSales"><FaArrowRight className="inline"/> Total Sales</Link>
+                <Link to="/totalSales">
+                  <FaArrowRight className="inline" /> Total Sales
+                </Link>
               </li>
             </ul>
           </li>
           <li className="menu text-[14px]">
-            User
+            <FaUsers className="inline-block text-2xl me-2"/> User
             <ul className="sub-menu">
               <li>
-                <Link to="/admins"><FaArrowRight className="inline"/> Admins</Link>
+                <Link to="/admins">
+                  <FaArrowRight className="inline" /> Admins
+                </Link>
               </li>
               <li>
-                <Link to="/agent"><FaArrowRight className="inline"/> Agent</Link>
+                <Link to="/agent">
+                  <FaArrowRight className="inline" /> Agent
+                </Link>
               </li>
             </ul>
           </li>

@@ -7,6 +7,7 @@ import HotelPackage from "../pages/Dashboard/Commissions/HotelPackage/HotelPacka
 import TotalSale from "../pages/Dashboard/Sale/TotalSale/TotalSale";
 import Currency from "../pages/Dashboard/Setting/Currency/Currency";
 import ProfileSetting from "../pages/Dashboard/Setting/ProfileSetting/ProfileSetting";
+import Report from "../pages/Dashboard/Setting/Report/Report";
 import MainStatement from "../pages/Dashboard/Transaction/MainStatement/MainStatement";
 import Payment from "../pages/Dashboard/Transaction/Payment/Payment";
 import Admin from "../pages/Dashboard/User/Admin/Admin";
@@ -112,6 +113,14 @@ export const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Currency />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/report",
+    element: (
+      <PrivateRoute>
+        <Report />
       </PrivateRoute>
     ),
   },
