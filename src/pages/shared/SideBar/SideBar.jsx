@@ -47,10 +47,10 @@ const SideBar = () => {
             Booking
             <ul className="sub-menu">
               <li>
-                <Link to="airTicket"><FaArrowRight className="inline"/> Air Ticket</Link>
+                <Link to="/airTicket"><FaArrowRight className="inline"/> Air Ticket</Link>
               </li>
               <li>
-                <Link to="hotelBooking"><FaArrowRight className="inline"/> Hotel Booking</Link>
+                <Link to="/hotelBooking"><FaArrowRight className="inline"/> Hotel Booking</Link>
               </li>
             </ul>
           </li>
@@ -58,10 +58,10 @@ const SideBar = () => {
             Transaction
             <ul className="sub-menu">
               <li>
-                <Link to="payment"><FaArrowRight className="inline"/> Payment</Link>
+                <Link to="/payment"><FaArrowRight className="inline"/> Payment</Link>
               </li>
               <li>
-                <Link to="mainStatement"><FaArrowRight className="inline"/> Main Statement</Link>
+                <Link to="/mainStatement"><FaArrowRight className="inline"/> Main Statement</Link>
               </li>
             </ul>
           </li>
@@ -69,11 +69,11 @@ const SideBar = () => {
             Commissions
             <ul className="sub-menu">
               <li>
-                <Link to="flightsPackages"><FaArrowRight className="inline"/> Flights Packages</Link>
+                <Link to="/flightsPackages"><FaArrowRight className="inline"/> Flights Packages</Link>
               </li>
 
               <li>
-                <Link to="hotelPackages"><FaArrowRight className="inline"/> Hotel Packages</Link>
+                <Link to="/hotelPackages"><FaArrowRight className="inline"/> Hotel Packages</Link>
               </li>
             </ul>
           </li>
@@ -81,10 +81,10 @@ const SideBar = () => {
             Setting
             <ul className="sub-menu">
               <li>
-                <Link to="profileSettings"><FaArrowRight className="inline"/> Profile Settings</Link>
+                <Link to="/profileSettings"><FaArrowRight className="inline"/> Profile Settings</Link>
               </li>
               <li>
-                <Link to="currency"><FaArrowRight className="inline"/> Currency</Link>
+                <Link to="/currency"><FaArrowRight className="inline"/> Currency</Link>
               </li>
             </ul>
           </li>
@@ -92,7 +92,7 @@ const SideBar = () => {
             Sale
             <ul className="sub-menu">
               <li>
-                <Link to="totalSales"><FaArrowRight className="inline"/> Total Sales</Link>
+                <Link to="/totalSales"><FaArrowRight className="inline"/> Total Sales</Link>
               </li>
             </ul>
           </li>
@@ -100,10 +100,10 @@ const SideBar = () => {
             User
             <ul className="sub-menu">
               <li>
-                <Link to="admins"><FaArrowRight className="inline"/> Admins</Link>
+                <Link to="/admins"><FaArrowRight className="inline"/> Admins</Link>
               </li>
               <li>
-                <Link to="agent"><FaArrowRight className="inline"/> Agent</Link>
+                <Link to="/agent"><FaArrowRight className="inline"/> Agent</Link>
               </li>
             </ul>
           </li>
