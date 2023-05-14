@@ -1,16 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import withDashboard from "../shared/DashboardLayout/DashboardLayout";
+import Flight from "../Trip/Flight/Flight";
+import Hotel from "../Trip/Hotel/Hotel";
+import flights from "../../assets/icon/home/Flights.svg";
+import hotels from "../../assets/icon/home/Hotel.svg";
+import { FaUserAlt } from "react-icons/fa";
 
 const Home = () => {
+  const [state, setState] = useState({
+    flight: true,
+    hotel: false,
+  });
+  // console.log(state);
+  const { flight, hotel } = state;
   return (
-    <div>
-      <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quo
-        qui illo, hic provident quis beatae omnis perferendis magni, fuga atque
-        cupiditate facere. Quae veritatis quisquam perferendis, voluptate et
-        voluptatibus.
-      </h1>
-    </div>
+    <>
+      {/* some text with a header section */}
+      <div>
+        <h1>Start Your Trip Now</h1>
+      </div>
+      {/* trip type */}
+      <div className="flex items-center">
+        <div
+          onClick={() => setState({ ...state, flight: true, hotel: false })}
+          className="flex flex-col items-center"
+        >
+          <img src={flights} alt="avatar" />
+          <p>Flight</p>
+        </div>
+        <div
+          onClick={() => setState({ ...state, hotel: true, flight: false })}
+          className="flex flex-col items-center"
+        >
+          <img src={hotels} alt="avatar" />
+          <p>Hotel</p>
+        </div>
+        <div>
+          <button onClick={()=>alert('hello world')}>
+            <FaUserAlt /> 1 Economy
+          </button>
+        </div>
+      </div>
+      {/* flight component */}
+      {flight && <Flight />}
+      {/* hotel component */}
+      {hotel && <Hotel />}
+    </>
   );
 };
 

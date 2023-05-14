@@ -44,7 +44,9 @@ const SideBar = () => {
             />
           </div>
           <div className="ms-1">
-            <h1 className="text-sm font-bold">Travel Business Portal</h1>
+            <Link to="/">
+              <h1 className="text-sm font-bold">Travel Business Portal</h1>
+            </Link>
             <p className="text-xs">Agent Id: 0001</p>
           </div>
         </div>
@@ -128,7 +130,7 @@ const SideBar = () => {
             </ul>
           </li>
           <li className="menu text-[14px]">
-            <FaUsers className="inline-block text-2xl me-2"/> User
+            <FaUsers className="inline-block text-2xl me-2" /> User
             <ul className="sub-menu">
               <li>
                 <Link to="/admins">
