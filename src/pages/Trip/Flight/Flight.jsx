@@ -9,10 +9,14 @@ const Flight = () => {
     multiCity: false,
   });
   const { oneWay, roundTrip, multiCity } = state;
+  // console.log(oneWay,roundTrip,multiCity);
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center space-x-5 my-5">
         <button
+          className={`border-spacing-y-2 ${
+            oneWay ? "border-blue-950 border-b-2" : "border-white border-b-2"
+          } pb-2`}
           onClick={() =>
             setState({
               ...state,
@@ -25,6 +29,9 @@ const Flight = () => {
           One Way
         </button>
         <button
+          className={`border-spacing-y-2 ${
+            roundTrip ? "border-blue-950 border-b-2" : "border-white border-b-2"
+          } pb-2`}
           onClick={() =>
             setState({
               ...state,
@@ -37,6 +44,9 @@ const Flight = () => {
           Round Trip
         </button>
         <button
+          className={`border-spacing-y-2 ${
+            multiCity ? "border-blue-950 border-b-2" : "border-white border-b-2"
+          } pb-2`}
           onClick={() =>
             setState({
               ...state,

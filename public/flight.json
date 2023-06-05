@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "flag": "https://download.logo.wine/logo/Jazeera_Airways/Jazeera_Airways-Logo.wine.png",
+    "name": "Jazeera Airways",
+    "price": 100000,
+    "flightType": "Refundable",
+    "start": "00:00",
+    "end": "07:59",
+    "type": "early",
+    "flightStop": 1
+  },
+  {
+    "id": 2,
+    "flag": "https://play-lh.googleusercontent.com/O58aF0wv2kgyxAgTNwnjBvlwC4In4NyHXH0K2UqS1aeAOtdf186xXa7IqHzEjGxEGA",
+    "name": "Biman Bangladesh",
+    "price": 400000,
+    "flightType": "Non-Refundable",
+    "start": "08:00",
+    "end": "11:59",
+    "type": "earlyMorning",
+    "flightStop": 2
+  },
+  {
+    "id": 3,
+    "flag": "https://download.logo.wine/logo/Jazeera_Airways/Jazeera_Airways-Logo.wine.png",
+    "name": "Jazeera Airways",
+    "price": 90000,
+    "flightType": "Refundable",
+    "start": "12:00",
+    "end": "16:00",
+    "type": "midDay",
+    "flightStop": 2
+  },
+  {
+    "id": 4,
+    "flag": "https://aviotag.com/wp-content/uploads/2019/09/flydubai.jpg",
+    "name": "Fz Airlines",
+    "price": 80000,
+    "flightType": "Non-Refundable",
+    "start": "16:01",
+    "end": "20:00",
+    "type": "evening",
+    "flightStop": 0
+  },
+  {
+    "id": 5,
+    "flag": "https://www.click2refund.com/Contents/GetAirlineLogo?id=18bebdc2-6fc5-4f42-9fbe-2deca0aea12f",
+    "name": "G9 Airways",
+    "price": 30000,
+    "flightType": "Refundable",
+    "start": "20:01",
+    "end": "23:59",
+    "type": "night",
+    "flightStop": 1
+  },
+  {
+    "id": 6,
+    "flag": "https://1000logos.net/wp-content/uploads/2020/04/Turkish-Airlines-symbol.png",
+    "name": "TK Airways",
+    "price": 20000,
+    "flightType": "Non-Refundable",
+    "start": "16:01",
+    "end": "20:00",
+    "type": "midDay",
+    "flightStop": 2
+  },
+  {
+    "id": 7,
+    "flag": "https://www.commvault.com/wp-content/uploads/2022/02/Sri-Lankan-Logo.png",
+    "name": "UL Airways",
+    "price": 50000,
+    "flightType": "Refundable",
+    "start": "20:01",
+    "end": "23:59",
+    "type": "night",
+    "flightStop": 0
+  },
+  {
+    "id": 8,
+    "flag": "https://play-lh.googleusercontent.com/O58aF0wv2kgyxAgTNwnjBvlwC4In4NyHXH0K2UqS1aeAOtdf186xXa7IqHzEjGxEGA",
+    "name": "Biman Bangladesh",
+    "price": 60000,
+    "flightType": "Refundable",
+    "start": "12:00",
+    "end": "16:00",
+    "type": "midDay",
+    "flightStop": 1
+  },
+  {
+    "id": 9,
+    "flag": "https://download.logo.wine/logo/Jazeera_Airways/Jazeera_Airways-Logo.wine.png",
+    "name": "Jazeera Airways",
+    "price": 100000,
+    "flightType": "Refundable",
+    "start": "00:00",
+    "end": "07:59",
+    "type": "early",
+    "flightStop": 2
+  },
+  {
+    "id": 10,
+    "flag": "https://play-lh.googleusercontent.com/O58aF0wv2kgyxAgTNwnjBvlwC4In4NyHXH0K2UqS1aeAOtdf186xXa7IqHzEjGxEGA",
+    "name": "Biman Bangladesh",
+    "price": 60000,
+    "flightType": "Non-Refundable",
+    "start": "16:01",
+    "end": "20:00",
+    "type": "evening",
+    "flightStop": 1
+  }
+]

@@ -1,0 +1,7 @@
+.before-border::before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    color: red;
+}
