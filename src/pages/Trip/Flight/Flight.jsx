@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import OneWay from "./FlightType/OneWay/OneWay";
 import RoundTrip from "./FlightType/RoundTrip/RoundTrip";
 import MultiCity from "./FlightType/MultiCity/MultiCity";
+import { Outlet } from "react-router-dom";
 const Flight = () => {
   const [state, setState] = useState({
     oneWay: true,
@@ -65,6 +66,7 @@ const Flight = () => {
       {roundTrip && <RoundTrip />}
       {/* multiCity */}
       {multiCity && <MultiCity />}
+      <Outlet />
     </>
   );
 };

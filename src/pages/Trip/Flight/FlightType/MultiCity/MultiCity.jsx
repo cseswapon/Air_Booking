@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 
 const MultiCity = () => {
   let [count, setCount] = useState(0);
@@ -9,7 +9,6 @@ const MultiCity = () => {
     }
   };
   // console.log(count);
-
   return (
     <div>
       <form>

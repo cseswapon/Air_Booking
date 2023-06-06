@@ -13,6 +13,7 @@ import Payment from "../pages/Dashboard/Transaction/Payment/Payment";
 import Admin from "../pages/Dashboard/User/Admin/Admin";
 import Agent from "../pages/Dashboard/User/Agent/Agent";
 import NotFound from "../pages/NotFound/NotFound";
+import SearchResult from "../pages/Trip/Flight/FlightType/SearchResult/SearchResult";
 import PrivateRoute from "../Private/PrivateRoute";
 import PublicRoute from "../Public/PbulicRoute";
 
@@ -27,6 +28,17 @@ export const router = createBrowserRouter([
         <Home />
       </PrivateRoute>
     ),
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "/flights/:search",
+        element: (
+          <PrivateRoute>
+            <SearchResult />
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
   {
     path: "/login",
