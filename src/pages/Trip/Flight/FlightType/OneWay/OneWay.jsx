@@ -24,18 +24,11 @@ const OneWay = () => {
   // console.log(data);
   return (
     <>
-      <div className="container mx-auto mt-5">
+      <div className="mt-5">
         <form
           onSubmit={(e) => handelSubmit(e)}
           className="flex items-center space-x-5"
         >
-          <input
-            required={true}
-            onChange={(e) => dispatch(destinationTo(e.target.value))}
-            type="text"
-            className="border border-gray-400 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-900"
-            placeholder="City Name"
-          />
           <input
             required={true}
             onChange={(e) => dispatch(destinationFrom(e.target.value))}
@@ -45,7 +38,19 @@ const OneWay = () => {
           />
           <input
             required={true}
-            onChange={(e) => dispatch(destinationDate(e.target.value))}
+            onChange={(e) => dispatch(destinationTo(e.target.value))}
+            type="text"
+            className="border border-gray-400 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-900"
+            placeholder="City Name"
+          />
+          <input
+            required={true}
+            onChange={(e) =>
+              dispatch(
+                destinationDate(new Date(e.target.value).toLocaleDateString())
+              )
+            }
+            /* onChange={(e)=>console.log(new Date(e.target.value).toLocaleDateString())} */
             type="date"
             className="border border-gray-400 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-900"
             placeholder="Date"

@@ -17,9 +17,9 @@ const RoundTrip = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     console.log(data);
-    /*  navigate(
+     navigate(
       `/flights/search?from=${data.destinationFrom}&to=${data.destinationTo}&&startingDate=${data.date}&endingDate=${data.EndDate}&adult=${adult}&children=${child}&infant=${infant}&sitClass=${sitClass}&flightType=${data.source}`
-    ); */
+    );
   };
   return (
     <div>

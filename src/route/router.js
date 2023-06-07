@@ -13,6 +13,7 @@ import Payment from "../pages/Dashboard/Transaction/Payment/Payment";
 import Admin from "../pages/Dashboard/User/Admin/Admin";
 import Agent from "../pages/Dashboard/User/Agent/Agent";
 import NotFound from "../pages/NotFound/NotFound";
+import SingleCard from "../pages/SingleCard/SingleCard";
 import SearchResult from "../pages/Trip/Flight/FlightType/SearchResult/SearchResult";
 import PrivateRoute from "../Private/PrivateRoute";
 import PublicRoute from "../Public/PbulicRoute";
@@ -39,6 +40,14 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "flight/:id",
+    element: (
+      <PrivateRoute>
+        <SingleCard />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/login",

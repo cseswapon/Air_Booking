@@ -3,6 +3,7 @@ import withDashboard from "../shared/DashboardLayout/DashboardLayout";
 import Flight from "../Trip/Flight/Flight";
 import flights from "../../assets/icon/home/Flights.svg";
 import { FaUserAlt } from "react-icons/fa";
+import linebar from "../../assets/icon/linebar.svg";
 import "./Home.css";
 export const CREATECONTEXT = createContext();
 const Home = () => {
@@ -29,14 +30,14 @@ const Home = () => {
     document.addEventListener("mousedown", handler);
   }, []);
 
-  // console.log(tost);
 
 
   return (
     <div className="p-[2rem]">
       {/* some text with a header section */}
-      <div className="my-10">
-        <h1 className="font-semibold text-2xl">Start Your Trip Now</h1>
+      <div className="my-10 flex items-center space-x-3">
+        <h1 className="font-semibold text-2xl">Start Your Trip Now </h1>
+        <img draggable={false} className="h-1" src={linebar} alt="avatar" />
       </div>
       {/* trip type */}
       <div className="flex items-center">
@@ -159,11 +160,11 @@ const Home = () => {
         </div>
       </div>
       {/* flight component */}
-      {flight &&
+      {flight && (
         <CREATECONTEXT.Provider value={state}>
           <Flight />
         </CREATECONTEXT.Provider>
-      }
+      )}
     </div>
   );
 };

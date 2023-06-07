@@ -20,7 +20,11 @@ export const userApi = createApi({
         body: data,
       }),
     }),
+    allFlight: builder.query({
+      query: () => "flight",
+    }),
   }),
 });
 
-export const { useAddUserMutation, useLoginUserMutation } = userApi;
+export const { useAddUserMutation, useLoginUserMutation, useAllFlightQuery } =
+  userApi;

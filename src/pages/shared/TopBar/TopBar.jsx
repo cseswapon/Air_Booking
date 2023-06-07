@@ -4,7 +4,7 @@ import { FaMoneyCheckAlt } from "react-icons/fa";
 const TopBar = () => {
   return (
     <>
-      <div className="flex justify-between px-9 bg-slate-100 py-3">
+      <div className="flex justify-between px-9 bg-slate-100 py-3 relative z-0">
         <div className="flex items-center">
           <div className="flex items-center">
             <div>
