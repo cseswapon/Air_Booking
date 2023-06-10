@@ -19,7 +19,7 @@ const SearchResult = () => {
     setSearch({ date: "" });
   }
 
-  console.log(data?.data);
+  // console.log(data?.data);
 
   const handelBook = (id) => {
     // console.log(id);

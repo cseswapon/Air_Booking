@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   email: "",
   password: "",
-  userInfo: null,
+  token: "",
 };
 const loginSlice = createSlice({
   name: "login",
@@ -14,12 +14,12 @@ const loginSlice = createSlice({
     createPassword: (state, { payload }) => {
       state.password = payload;
     },
-    infoUser: (state, { payload }) => {
-      state.userInfo = payload;
-    },
+    generateToken: (state, { payload }) => {
+      state.token = payload;
+    }
   },
 });
 
-export const { createEmail, createPassword, infoUser } = loginSlice.actions;
+export const { createEmail, createPassword,generateToken } = loginSlice.actions;
 
 export default loginSlice.reducer;

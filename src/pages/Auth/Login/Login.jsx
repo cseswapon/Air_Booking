@@ -9,12 +9,13 @@ import tbpLogo from "../../../assets/icon/logo/tbp_logo.png";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import "../css/Login.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createEmail,
   createPassword,
+  generateToken,
 } from "../../../redux/features/login/loginSlice";
 import { useLoginUserMutation } from "../../../redux/features/api/apiSlice";
 const Login = () => {
@@ -48,8 +49,8 @@ const Login = () => {
   const {
     login: { email, password },
   } = useSelector((state) => state);
-  const [login, { isError, isLoading, isSuccess, data }] =
-    useLoginUserMutation();
+  const [login, { isSuccess, data }] = useLoginUserMutation();
+
   const navigate = useNavigate();
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -76,10 +77,12 @@ const Login = () => {
         "login",
         JSON.stringify({ userLogIn: true, token: data.access_token })
       );
+
       setCookie("user_login", data?.data?.email, 1);
+      dispatch(generateToken(data?.access_token));
       navigate("/");
     }
-  }, [isSuccess]);
+  }, [dispatch, isSuccess, data?.access_token, data?.data?.email, navigate]);
 
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center relative">
