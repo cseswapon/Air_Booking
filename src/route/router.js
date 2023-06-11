@@ -13,8 +13,8 @@ import Payment from "../pages/Dashboard/Transaction/Payment/Payment";
 import Admin from "../pages/Dashboard/User/Admin/Admin";
 import Agent from "../pages/Dashboard/User/Agent/Agent";
 import NotFound from "../pages/NotFound/NotFound";
-import SingleCard from "../pages/SingleCard/SingleCard";
 import SearchResult from "../pages/Trip/Flight/FlightType/SearchResult/SearchResult";
+import SingleCard from "../pages/Trip/SingleCard/SingleCard";
 import PrivateRoute from "../Private/PrivateRoute";
 import PublicRoute from "../Public/PbulicRoute";
 

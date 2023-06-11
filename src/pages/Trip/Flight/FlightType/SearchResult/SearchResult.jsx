@@ -6,12 +6,15 @@ import { BsFillBagDashFill } from "react-icons/bs";
 const SearchResult = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useSearchParams();
-  const { isError, isLoading, isFetching, data } = useAllFlightQuery();
+  const { data } = useAllFlightQuery();
   // console.log(search.get("from"));
   const from = search.get("from");
   const to = search.get("to");
   const date = search.get("date");
   const newDate = new Date(date).toDateString().split(" ");
+  const adult = search.get("adult");
+  const infant = search.get("infant");
+  const children = search.get("children");
 
   if (!(from || to || date)) {
     setSearch({ from: "" });
@@ -19,11 +22,12 @@ const SearchResult = () => {
     setSearch({ date: "" });
   }
 
-  // console.log(data?.data);
 
   const handelBook = (id) => {
     // console.log(id);
-    navigate(`/flight/${id}`);
+    navigate(
+      `/flight/${id}?from=${from}&&to=${to}&&adult=${adult}&&infant=${infant}&&children=${children}&&date=${date}`
+    );
   };
   return (
     <div className="flex my-5">
