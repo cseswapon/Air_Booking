@@ -14,6 +14,7 @@ import Admin from "../pages/Dashboard/User/Admin/Admin";
 import Agent from "../pages/Dashboard/User/Agent/Agent";
 import NotFound from "../pages/NotFound/NotFound";
 import SearchResult from "../pages/Trip/Flight/FlightType/SearchResult/SearchResult";
+import FlightBooking from "../pages/Trip/FlightBooking/FlightBooking";
 import SingleCard from "../pages/Trip/SingleCard/SingleCard";
 import PrivateRoute from "../Private/PrivateRoute";
 import PublicRoute from "../Public/PbulicRoute";
@@ -46,6 +47,14 @@ export const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <SingleCard />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "flight/:id/booking/:bookingId",
+    element: (
+      <PrivateRoute>
+        <FlightBooking />
       </PrivateRoute>
     ),
   },

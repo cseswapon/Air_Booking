@@ -33,7 +33,7 @@ const SearchResult = () => {
     <div className="flex my-5">
       <div className="w-40">Filter</div>
       <div className="flex flex-col items-start">
-        {data?.data.map((flights, i) => (
+        {data?.data?.map((flights, i) => (
           <div key={i}>
             <div className="flex items-center space-x-5 p-2 rounded-sm border border-gray-300 w-full mb-4">
               <div className="text-center">
@@ -48,7 +48,7 @@ const SearchResult = () => {
               <div className="flex space-x-5 items-center">
                 <div>
                   <h1 className="text-2xl font-bold">
-                    {from.toLocaleUpperCase()}
+                    {from.slice(0, 3).toLocaleUpperCase()}
                   </h1>
                   <p>{`${newDate[0]}, ${newDate[2]} ${newDate[1]} ${newDate[3]}`}</p>
                 </div>
@@ -59,7 +59,7 @@ const SearchResult = () => {
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold">
-                    {to.toLocaleUpperCase()}
+                    {to.slice(0, 3).toLocaleUpperCase()}
                   </h1>
                   <p>{`${newDate[0]}, ${newDate[2]} ${newDate[1]} ${newDate[3]}`}</p>
                 </div>

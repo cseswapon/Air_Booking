@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import withDashboard from "../../shared/DashboardLayout/DashboardLayout";
 import connectingTime from "./assest/timeimg.svg";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useGetSingleFlightQuery } from "../../../redux/features/api/apiSlice";
 import { BsFillBagDashFill } from "react-icons/bs";
+import Adult from "../PassengerInfo/Adult/Adult";
+import Children from "../PassengerInfo/Children/Children";
+import Infant from "../PassengerInfo/Infant/Infant";
 
 const SingleCard = () => {
+  const [value, setValue] = useState([]);
+  const [childvalue, setChildValue] = useState([]);
+  const [adultdvalue, setAdultValue] = useState([]);
   const { id } = useParams();
   const token = JSON.parse(localStorage.getItem("login")).token;
   const { data } = useGetSingleFlightQuery(id, token);
@@ -26,15 +32,22 @@ const SingleCard = () => {
     setSearchParams({ children: "" });
     setSearchParams({ date: "" });
   }
+  // const total = adult + infant + children;
+  const navigator = useNavigate();
 
-  const total = adult + infant + children;
-  console.log(total);
   if (!data) {
     return <p className="p-9">Loading....</p>;
   }
-  console.log(data, from);
+
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    navigator(`/flight/${id}/booking/bookingId`);
+    // console.log(value, childvalue, adultdvalue);
+  };
+
   return (
     <div className="py-9 mx-9">
+      <p className="mb-5 text-2xl font-bold">Passenger Information</p>
       {/* <h1>{id}</h1> */}
       <div className="flex items-center place-content-around space-x-5 p-2 rounded-sm border border-gray-300 w-full mb-4">
         <div className="text-center">
@@ -48,7 +61,9 @@ const SingleCard = () => {
         </div>
         <div className="flex space-x-5 items-center">
           <div>
-            <h1 className="text-2xl font-bold">{from.toLocaleUpperCase()}</h1>
+            <h1 className="text-2xl font-bold">
+              {from.slice(0, 3).toLocaleUpperCase()}
+            </h1>
             <p>{`${newDate[0]}, ${newDate[2]} ${newDate[1]} ${newDate[3]}`}</p>
           </div>
           <div className="flex space-x-3 items-center">
@@ -57,7 +72,9 @@ const SingleCard = () => {
             <h1>9:50</h1>
           </div>
           <div>
-            <h1 className="text-2xl font-bold">{to.toLocaleUpperCase()}</h1>
+            <h1 className="text-2xl font-bold">
+              {to.slice(0, 3).toLocaleUpperCase()}
+            </h1>
             <p>{`${newDate[0]}, ${newDate[2]} ${newDate[1]} ${newDate[3]}`}</p>
           </div>
         </div>
@@ -77,6 +94,40 @@ const SingleCard = () => {
           </p>
         </div>
       </div>
+      <form onSubmit={handelSubmit}>
+        {/* adult */}
+        {adult > 0 && <p className="my-2 text-2xl font-bold">Adult</p>}
+        {adult > 0 &&
+          Array.from({ length: adult }, (_, i) => (
+            <Adult
+              className="my-3"
+              values={i}
+              adultdvalue={adultdvalue}
+              setAdultValue={setAdultValue}
+              key={i}
+            />
+          ))}
+        {/* children */}
+        {children > 0 && <p className="my-2 text-2xl font-bold">Children</p>}
+        {children > 0 &&
+          Array.from({ length: children }, (_, i) => (
+            <Children
+              key={i}
+              values={i}
+              setChildValue={setChildValue}
+              childvalue={childvalue}
+            />
+          ))}
+        {/* infant */}
+        {infant > 0 && <p className="my-2 text-2xl font-bold">Infant</p>}
+        {infant > 0 &&
+          Array.from({ length: infant }, (_, i) => (
+            <Infant key={i} values={i} value={value} setValue={setValue} />
+          ))}
+        <button className="btn-blue w-40 p-2" type="submit">
+          Submit
+        </button>
+      </form>
     </div>
   );
 };
