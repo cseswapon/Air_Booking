@@ -17,18 +17,112 @@ const TicketBooking = () => {
     setSearchParams({ to: "" });
   }
 
-  const state = useSelector((state) => state.sitBooking.booking);
-  console.log(state.sitBooking);
+  const { sitBooking, passInfo } = useSelector((state) => state);
+  const { adult, child, infant } = passInfo;
+  //   console.log(adult, child.length, infant.length);
+  //   console.log(infant);
 
   return (
     <>
-      <h1 className="p-5 font-bold">Ticketing Booking Id : {id}</h1>
       <div className="grid grid-cols-2 px-5">
-        <div>
-          <h1>Passenger Info</h1>
+        <div className="px-5">
+          <h1 className="text-2xl font-bold border-b-2 pb-2 my-3">
+            Passenger Info
+          </h1>
+          {adult.adult_fname_0?.length > 0 && (
+            <div className="my-2">
+              <p className="font-bold border-b-2 border-dotted my-2">Adult</p>
+              <p className="my-2">
+                Fast Name: <b>{adult.adult_fname_0}</b>
+              </p>
+              <p className="my-2">
+                Last Name: <b>{adult.adult_lname_0}</b>
+              </p>
+              <p className="my-2">
+                DOB: <b>{adult.adult_date_0}</b>
+              </p>
+            </div>
+          )}
+          {adult.adult_fname_1?.length && (
+            <div className="my-2">
+              <p className="font-bold border-b-2 border-dotted my-2">Adult</p>
+              <p className="my-2">
+                Fast Name: <b>{adult.adult_fname_1}</b>
+              </p>
+              <p className="my-2">
+                Last Name: <b>{adult.adult_lname_1}</b>
+              </p>
+              <p className="my-2">
+                DOB: <b>{adult.adult_date_1}</b>
+              </p>
+            </div>
+          )}
+          {child.children_fname_0 && (
+            <div className="my-2">
+              <p className="font-bold border-b-2 border-dotted my-2">
+                Children
+              </p>
+              <p className="my-2">
+                Fast Name: <b>{child.children_fname_0}</b>
+              </p>
+              <p className="my-2">
+                Last Name: <b>{child.children_lname_0}</b>
+              </p>
+              <p className="my-2">
+                DOB: <b>{child.children_date_0}</b>
+              </p>
+            </div>
+          )}
+          {child.children_fname_0 && (
+            <div className="my-2">
+              <p className="font-bold border-b-2 border-dotted my-2">
+                Children
+              </p>
+              <p className="my-2">
+                Fast Name: <b>{child.children_fname_1}</b>
+              </p>
+              <p className="my-2">
+                Last Name: <b>{child.children_lname_1}</b>
+              </p>
+              <p className="my-2">
+                DOB: <b>{child.children_date_1}</b>
+              </p>
+            </div>
+          )}
+          {infant.infant_fname_0 && (
+            <div className="my-2">
+              <p className="font-bold border-b-2 border-dotted my-2">Infant</p>
+              <p className="my-2">
+                Fast Name: <b>{infant.infant_fname_0}</b>
+              </p>
+              <p className="my-2">
+                Last Name: <b>{infant.infant_lname_0}</b>
+              </p>
+              <p className="my-2">
+                DOB: <b>{infant.infant_date_0}</b>
+              </p>
+            </div>
+          )}
+          {infant.infant_fname_1 && (
+            <div className="my-2">
+              <p className="font-bold border-b-2 border-dotted my-2">Infant</p>
+              <p className="my-2">
+                Fast Name: <b>{infant.infant_fname_1}</b>
+              </p>
+              <p className="my-2">
+                Last Name: <b>{infant.infant_lname_1}</b>
+              </p>
+              <p className="my-2">
+                DOB: <b>{infant.infant_date_1}</b>
+              </p>
+            </div>
+          )}
         </div>
-        <div className="text-center">
-          <h1 className="text-2xl font-bold border-b-2 pb-2">Ticket Info</h1>
+        {/* ticket information */}
+        <div className="text-center px-5">
+          <h1 className="text-2xl font-bold border-b-2 pb-2 my-3">
+            Ticket Info
+          </h1>
           <div>
             <img
               className="w-1/4 mx-auto"
@@ -49,8 +143,7 @@ const TicketBooking = () => {
             </div>
             <div className="py-5">
               <p className="font-bold text-2xl">
-                Price:{" "}
-                {data?.allFlight.price}
+                Price: {data?.allFlight.price}
               </p>
             </div>
             <hr />
@@ -58,8 +151,13 @@ const TicketBooking = () => {
               <p>
                 Total Price:{" "}
                 {Number(data?.allFlight.price) *
-                  state.sitBooking.length}
+                  sitBooking?.booking?.sitBooking.length}
               </p>
+            </div>
+            <div>
+              <button onClick={()=>alert('payment')} className="ring-2 bg-blue-500 text-white rounded px-5">
+                Pay
+              </button>
             </div>
           </div>
         </div>
