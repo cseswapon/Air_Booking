@@ -16,6 +16,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import SearchResult from "../pages/Trip/Flight/FlightType/SearchResult/SearchResult";
 import FlightBooking from "../pages/Trip/FlightBooking/FlightBooking";
 import SingleCard from "../pages/Trip/SingleCard/SingleCard";
+import TicketBooking from "../pages/Trip/TicketBooking/TicketBooking";
 import PrivateRoute from "../Private/PrivateRoute";
 import PublicRoute from "../Public/PbulicRoute";
 
@@ -51,10 +52,18 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "flight/:id/booking/:bookingId",
+    path: "flight/booking/:id",
     element: (
       <PrivateRoute>
         <FlightBooking />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "flight/ticket/booking/:id",
+    element: (
+      <PrivateRoute>
+        <TicketBooking/>
       </PrivateRoute>
     ),
   },

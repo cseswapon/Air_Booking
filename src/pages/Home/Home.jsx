@@ -71,7 +71,7 @@ const Home = () => {
                 </button>
                 <span className="mx-5">{adult}</span>
                 <button
-                  disabled={adult >= 9 ? true : false}
+                  disabled={adult >= 2 ? true : false}
                   onClick={() => setState({ ...state, adult: adult + 1 })}
                   className={`px-2 border bg-blue-500 text-white rounded ${
                     adult >= 9 ? "cursor-not-allowed" : "cursor-pointer"
@@ -92,7 +92,7 @@ const Home = () => {
                 </button>
                 <span className="mx-5">{infant}</span>
                 <button
-                  disabled={infant >= 4 ? true : false}
+                  disabled={infant >= 2 ? true : false}
                   onClick={() => setState({ ...state, infant: infant + 1 })}
                   className={`px-2 border bg-blue-500 text-white rounded ${
                     infant >= 4 ? "cursor-not-allowed" : "cursor-pointer"
@@ -113,7 +113,7 @@ const Home = () => {
                 </button>
                 <span className="mx-5">{child}</span>
                 <button
-                  disabled={child >= 4 ? true : false}
+                  disabled={child >= 2 ? true : false}
                   onClick={() => setState({ ...state, child: child + 1 })}
                   className={`px-2 border bg-blue-500 text-white rounded ${
                     child >= 4 ? "cursor-not-allowed" : "cursor-pointer"

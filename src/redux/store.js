@@ -6,6 +6,7 @@ import registerSlice from "./features/register/registerSlice";
 import oneWaySlice from "./features/oneWay/oneWaySlice";
 import roundTripSlice from "./features/roundTrip/roundTripSlice";
 import passInfo from "./features/passInfo/passInfo";
+import sitBookingSlice from "./features/sitBooking/sitBookingSlice";
 
 export const store = configureStore({
   // devTools:false,
@@ -16,6 +17,7 @@ export const store = configureStore({
     oneway: oneWaySlice,
     roundTrip: roundTripSlice,
     passInfo: passInfo,
+    sitBooking: sitBookingSlice,
     [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

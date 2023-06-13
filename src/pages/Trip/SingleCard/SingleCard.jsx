@@ -7,6 +7,12 @@ import { BsFillBagDashFill } from "react-icons/bs";
 import Adult from "../PassengerInfo/Adult/Adult";
 import Children from "../PassengerInfo/Children/Children";
 import Infant from "../PassengerInfo/Infant/Infant";
+import { useDispatch } from "react-redux";
+import {
+  addAdult,
+  addChild,
+  addInfant,
+} from "../../../redux/features/passInfo/passInfo";
 
 const SingleCard = () => {
   const [value, setValue] = useState([]);
@@ -34,15 +40,17 @@ const SingleCard = () => {
   }
   // const total = adult + infant + children;
   const navigator = useNavigate();
-
+  const dispatch = useDispatch();
   if (!data) {
     return <p className="p-9">Loading....</p>;
   }
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    navigator(`/flight/${id}/booking/bookingId`);
-    // console.log(value, childvalue, adultdvalue);
+    dispatch(addChild(childvalue));
+    dispatch(addInfant(value));
+    dispatch(addAdult(adultdvalue));
+    navigator(`/flight/booking/${id}?from=${from}&&to=${to}`);
   };
 
   return (

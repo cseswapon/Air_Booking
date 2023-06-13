@@ -1,34 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  adult: {
-    fname: "",
-    lname: "",
-    dob: "",
-  },
-  fname: "",
-  lname: "",
-  infant: [],
-  child: [],
+  adult: null,
+  infant: null,
+  child: null,
 };
 export const passInfo = createSlice({
   initialState,
   name: "Passenger Information",
   reducers: {
     addAdult: (state, { payload }) => {
-      state.adult.fname = payload.fname;
-      state.adult.lname = payload.lname;
-      state.adult.dob = payload.dob;
+      state.adult = payload;
     },
-    addInfant: (state, { payload: { index, value } }) => {
-      const obj = {};
-      obj[index] = value;
-      state.infant.push(obj);
-      /* const { index, value } = payload;
-      state.infant[index] = value; */
+    addInfant: (state, { payload }) => {
+      state.infant = payload;
+    },
+    addChild: (state, { payload }) => {
+      state.child = payload;
     },
   },
 });
 
-export const { addAdult, addInfant } = passInfo.actions;
+export const { addAdult, addInfant, addChild } = passInfo.actions;
 
 export default passInfo.reducer;
