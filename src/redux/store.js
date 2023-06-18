@@ -1,4 +1,9 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  combineReducers,
+  configureStore,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
 import { userApi } from "./features/api/apiSlice";
 import counterSlice from "./features/counter/counterSlice";
 import loginSlice from "./features/login/loginSlice";
@@ -7,8 +12,9 @@ import oneWaySlice from "./features/oneWay/oneWaySlice";
 import roundTripSlice from "./features/roundTrip/roundTripSlice";
 import passInfo from "./features/passInfo/passInfo";
 import sitBookingSlice from "./features/sitBooking/sitBookingSlice";
+import persistReducer from "redux-persist/es/persistReducer";
 
-export const store = configureStore({
+/* export const store = configureStore({
   // devTools:false,
   reducer: {
     counter: counterSlice,
@@ -20,6 +26,32 @@ export const store = configureStore({
     sitBooking: sitBookingSlice,
     [userApi.reducerPath]: userApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(userApi.middleware),
+});
+ */
+
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage,
+};
+
+const reducer = combineReducers({
+  counter: counterSlice,
+  register: registerSlice,
+  login: loginSlice,
+  oneway: oneWaySlice,
+  roundTrip: roundTripSlice,
+  passInfo: passInfo,
+  sitBooking: sitBookingSlice,
+  [userApi.reducerPath]: userApi.reducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(userApi.middleware),
 });
