@@ -12,6 +12,9 @@ const FlightBooking = () => {
   const [params, setSearchParams] = useSearchParams();
   const from = params.get("from");
   const to = params.get("to");
+  const adult = params.get("adult");
+  const child = params.get("child");
+  const infant = params.get("infant");
   if (!(from || to)) {
     setSearchParams({ from: "" });
     setSearchParams({ to: "" });
@@ -48,7 +51,9 @@ const FlightBooking = () => {
     }
     // console.log(sit);
     dispatch(sitBook(sit));
-    navigate(`/flight/ticket/booking/${id}?from=${from}&&to=${to}`);
+    navigate(
+      `/flight/ticket/booking/${id}?from=${from}&&to=${to}&&adult=${adult}&&child=${child}&&infant=${infant}`
+    );
   };
   return (
     <>
@@ -98,7 +103,6 @@ const FlightBooking = () => {
           </button>
         </div>
       </div>
-          
     </>
   );
 };

@@ -9,6 +9,7 @@ import { FaSellsy, FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import "./SideBar.css";
+import { useSelector } from "react-redux";
 const SideBar = () => {
   const handelLogout = () => {
     let cookies = document.cookie.split(";");
@@ -21,6 +22,7 @@ const SideBar = () => {
     localStorage.clear();
     window.location.reload();
   };
+  const role = useSelector((state) => state.login.role);
   return (
     <>
       <div>
@@ -82,7 +84,7 @@ const SideBar = () => {
               </li>
             </ul>
           </li>
-          <li className="menu text-[14px]">
+          {role === 'admin' && <li className="menu text-[14px]">
             <RiGitRepositoryCommitsFill className="inline-block text-2xl me-2" />{" "}
             Commissions
             <ul className="sub-menu">
@@ -98,7 +100,7 @@ const SideBar = () => {
                 </Link>
               </li>
             </ul>
-          </li>
+          </li>}
           <li className="menu text-[14px]">
             <AiTwotoneSetting className="inline-block text-2xl me-2" /> Setting
             <ul className="sub-menu">
@@ -112,38 +114,42 @@ const SideBar = () => {
                   <FaArrowRight className="inline" /> Currency
                 </Link>
               </li>
-              <li>
+              {role === 'admin'&& <li>
                 <Link to="/report">
                   <FaArrowRight className="inline" /> Report
                 </Link>
-              </li>
+              </li>}
             </ul>
           </li>
-          <li className="menu text-[14px]">
-            <FaSellsy className="inline-block text-2xl me-2" /> Sale
-            <ul className="sub-menu">
-              <li>
-                <Link to="/totalSales">
-                  <FaArrowRight className="inline" /> Total Sales
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li className="menu text-[14px]">
-            <FaUsers className="inline-block text-2xl me-2" /> User
-            <ul className="sub-menu">
-              <li>
-                <Link to="/admins">
-                  <FaArrowRight className="inline" /> Admins
-                </Link>
-              </li>
-              <li>
-                <Link to="/agent">
-                  <FaArrowRight className="inline" /> Agent
-                </Link>
-              </li>
-            </ul>
-          </li>
+          {role === "admin" && (
+            <li className="menu text-[14px]">
+              <FaSellsy className="inline-block text-2xl me-2" /> Sale
+              <ul className="sub-menu">
+                <li>
+                  <Link to="/totalSales">
+                    <FaArrowRight className="inline" /> Total Sales
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          )}
+          {role === "admin" && (
+            <li className="menu text-[14px]">
+              <FaUsers className="inline-block text-2xl me-2" /> User
+              <ul className="sub-menu">
+                <li>
+                  <Link to="/admins">
+                    <FaArrowRight className="inline" /> Admins
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/agent">
+                    <FaArrowRight className="inline" /> Agent
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          )}
         </ul>
         <button
           onClick={() => handelLogout()}

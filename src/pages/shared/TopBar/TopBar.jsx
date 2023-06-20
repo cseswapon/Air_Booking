@@ -1,7 +1,10 @@
 import React from "react";
 import { GrNotification } from "react-icons/gr";
 import { FaMoneyCheckAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 const TopBar = () => {
+  const state = useSelector((state) => state.login);
+  // console.log(state.email);
   return (
     <>
       <div className="flex justify-between px-9 bg-slate-100 py-3 relative z-0">
@@ -13,8 +16,7 @@ const TopBar = () => {
               </p>
             </div>
             <div>
-              <p>+88 017xxx-xxxxx</p>
-              <p>+88 017xxx-xxxxx</p>
+              <p>{state.contactNumber}</p>
             </div>
           </div>
           <div className="flex items-center ms-10">
@@ -24,7 +26,11 @@ const TopBar = () => {
               </p>
             </div>
             <div>
-              <a href="mailto:abc@gmail.com">abc@gmail.com</a>
+              <a href={`mailto:${state.email}`}>
+              </a>{state.email}
+              <span className="text-white bg-blue-700 p-2 mx-3 rounded-lg font-bold">
+                ({state.role})
+              </span>
             </div>
           </div>
         </div>

@@ -30,6 +30,8 @@ const SingleCard = () => {
   const date = params.get("date");
   const newDate = new Date(date).toDateString().split(" ");
 
+  console.log(children);
+
   if (!(adult || infant || children || date || from || to)) {
     setSearchParams({ from: "" });
     setSearchParams({ to: "" });
@@ -50,7 +52,9 @@ const SingleCard = () => {
     dispatch(addChild(childvalue));
     dispatch(addInfant(value));
     dispatch(addAdult(adultdvalue));
-    navigator(`/flight/booking/${id}?from=${from}&&to=${to}`);
+    navigator(
+      `/flight/booking/${id}?from=${from}&&to=${to}&&adult=${adult}&&child=${children}&&infant=${infant}`
+    );
   };
 
   return (

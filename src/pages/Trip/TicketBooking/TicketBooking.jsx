@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import withDashboard from "../../shared/DashboardLayout/DashboardLayout";
-import { useParams, useSearchParams } from "react-router-dom";
-import { useGetSingleFlightQuery } from "../../../redux/features/api/apiSlice";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  useAddPaymentMutation,
+  useGetSingleFlightQuery,
+} from "../../../redux/features/api/apiSlice";
 import time from "./assest/timeimg.svg";
 import { useSelector } from "react-redux";
 
@@ -12,15 +15,56 @@ const TicketBooking = () => {
   const [params, setSearchParams] = useSearchParams();
   const from = params.get("from");
   const to = params.get("to");
+  const adults = params.get("adult");
+  const childres = params.get("children");
+  const infants = params.get("infant");
   if (!(from || to)) {
     setSearchParams({ from: "" });
     setSearchParams({ to: "" });
   }
 
-  const { sitBooking, passInfo } = useSelector((state) => state);
+  const { sitBooking, passInfo, login } = useSelector((state) => state);
+  console.log(login.email);
   const { adult, child, infant } = passInfo;
   //   console.log(adult, child.length, infant.length);
-  //   console.log(infant);
+  // console.log(child);
+
+  const [addPayment, { isError, isLoading, isSuccess, data: fdata }] =
+    useAddPaymentMutation();
+
+  // console.log(addPayment);
+
+  const handelPayment = () => {
+    const obj = {
+      email: login.email,
+      amount:
+        Number(data?.allFlight.price) * adults ||
+        1 * childres ||
+        1 * infant ||
+        1,
+      from,
+      to,
+      airlinesName: data?.allFlight.name,
+      adult: adults,
+      infant: infants,
+      children: childres,
+    };
+    // console.log(obj);
+    addPayment(obj);
+    // console.log(isSuccess)
+  };
+  const navigator = useNavigate();
+
+  useEffect(() => {
+    console.log(isSuccess);
+    if (isSuccess) {
+      alert("Data Save Successful");
+      navigator("/");
+      // window.location.href = "/";
+    }
+  });
+
+  // console.log(isError,isLoading);
 
   return (
     <>
@@ -29,7 +73,7 @@ const TicketBooking = () => {
           <h1 className="text-2xl font-bold border-b-2 pb-2 my-3">
             Passenger Info
           </h1>
-          {adult.adult_fname_0?.length > 0 && (
+          {adult?.adult_fname_0?.length > 0 && (
             <div className="my-2">
               <p className="font-bold border-b-2 border-dotted my-2">Adult</p>
               <p className="my-2">
@@ -43,7 +87,7 @@ const TicketBooking = () => {
               </p>
             </div>
           )}
-          {adult.adult_fname_1?.length && (
+          {adult?.adult_fname_1?.length && (
             <div className="my-2">
               <p className="font-bold border-b-2 border-dotted my-2">Adult</p>
               <p className="my-2">
@@ -57,7 +101,7 @@ const TicketBooking = () => {
               </p>
             </div>
           )}
-          {child.children_fname_0 && (
+          {child?.children_fname_0 && (
             <div className="my-2">
               <p className="font-bold border-b-2 border-dotted my-2">
                 Children
@@ -73,7 +117,7 @@ const TicketBooking = () => {
               </p>
             </div>
           )}
-          {child.children_fname_0 && (
+          {child?.children_fname_1 && (
             <div className="my-2">
               <p className="font-bold border-b-2 border-dotted my-2">
                 Children
@@ -89,7 +133,7 @@ const TicketBooking = () => {
               </p>
             </div>
           )}
-          {infant.infant_fname_0 && (
+          {infant?.infant_fname_0 && (
             <div className="my-2">
               <p className="font-bold border-b-2 border-dotted my-2">Infant</p>
               <p className="my-2">
@@ -103,7 +147,7 @@ const TicketBooking = () => {
               </p>
             </div>
           )}
-          {infant.infant_fname_1 && (
+          {infant?.infant_fname_1 && (
             <div className="my-2">
               <p className="font-bold border-b-2 border-dotted my-2">Infant</p>
               <p className="my-2">
@@ -143,19 +187,29 @@ const TicketBooking = () => {
             </div>
             <div className="py-5">
               <p className="font-bold text-2xl">
-                Price: {data?.allFlight.price}
+                Price:{" "}
+                {data?.allFlight?.price
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </p>
             </div>
             <hr />
             <div className="py-5">
               <p>
                 Total Price:{" "}
-                {Number(data?.allFlight.price) *
-                  sitBooking?.booking?.sitBooking.length}
+                {Number(
+                  Number(data?.allFlight.price) *
+                    sitBooking?.booking?.sitBooking.length
+                )
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </p>
             </div>
             <div>
-              <button onClick={()=>alert('payment')} className="ring-2 bg-blue-500 text-white rounded px-5">
+              <button
+                onClick={() => handelPayment()}
+                className="ring-2 bg-blue-500 text-white rounded px-5"
+              >
                 Pay
               </button>
             </div>

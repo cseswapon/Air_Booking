@@ -13,9 +13,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  contactNumber,
   createEmail,
   createPassword,
   generateToken,
+  userRole,
 } from "../../../redux/features/login/loginSlice";
 import { useLoginUserMutation } from "../../../redux/features/api/apiSlice";
 const Login = () => {
@@ -60,6 +62,7 @@ const Login = () => {
     };
     login(result);
   };
+
   // cookies set with a login info
   function setCookie(name, value, days) {
     let expires = "";
@@ -77,12 +80,21 @@ const Login = () => {
         "login",
         JSON.stringify({ userLogIn: true, token: data.access_token })
       );
-
       setCookie("user_login", data?.data?.email, 1);
       dispatch(generateToken(data?.access_token));
+      dispatch(userRole(data?.data?.role));
+      dispatch(contactNumber(data?.data?.contactNumber));
       navigate("/");
     }
-  }, [dispatch, isSuccess, data?.access_token, data?.data?.email, navigate]);
+  }, [
+    dispatch,
+    isSuccess,
+    data?.access_token,
+    data?.data?.email,
+    navigate,
+    data?.data?.role,
+    data?.data?.contactNumber,
+  ]);
 
   return (
     <div className="lg:bg-slate-700 bg-slate-100 min-h-screen lg:flex items-center justify-center relative">

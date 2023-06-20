@@ -7,16 +7,13 @@ export const userApi = createApi({
       const state = getState();
       // console.log(JSON.parse(localStorage.getItem("login")).token);
       // If we have a token set in state, let's assume that we should be passing it.
-      if (
-        state.login.token ||
-        JSON.parse(localStorage.getItem("login"))
-      ) {
+      if (state.login.token || JSON.parse(localStorage.getItem("login"))) {
         headers.set(
           "authorization",
           `Bearer ${JSON.parse(localStorage.getItem("login"))?.token}`
         );
       }
-    }
+    },
   }),
   tagTypes: ["User"],
   endpoints: (builder) => ({
@@ -43,6 +40,20 @@ export const userApi = createApi({
         method: "GET",
       }),
     }),
+    addPayment: builder.mutation({
+      query: (data) => ({
+        url: "payment",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags:["User"]
+    }),
+    getPayment: builder.query({
+      query: () => ({
+        url: "Payment",
+        method:"GET",
+      })
+    })
   }),
 });
 
@@ -51,4 +62,6 @@ export const {
   useLoginUserMutation,
   useAllFlightQuery,
   useGetSingleFlightQuery,
+  useAddPaymentMutation,
+  useGetPaymentQuery
 } = userApi;

@@ -3,6 +3,8 @@ const initialState = {
   email: "",
   password: "",
   token: "",
+  contactNumber:"",
+  role: "",
 };
 const loginSlice = createSlice({
   name: "login",
@@ -16,10 +18,17 @@ const loginSlice = createSlice({
     },
     generateToken: (state, { payload }) => {
       state.token = payload;
-    }
+    },
+    contactNumber: (state, { payload }) => {
+      state.contactNumber = payload;
+    },
+    userRole: (state, { payload }) => {
+      state.role = payload;
+    },
   },
 });
 
-export const { createEmail, createPassword,generateToken } = loginSlice.actions;
+export const { createEmail, createPassword, generateToken, userRole,contactNumber } =
+  loginSlice.actions;
 
 export default loginSlice.reducer;
