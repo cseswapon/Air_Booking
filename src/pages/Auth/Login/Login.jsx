@@ -17,6 +17,7 @@ import {
   createEmail,
   createPassword,
   generateToken,
+  setCompany,
   userRole,
 } from "../../../redux/features/login/loginSlice";
 import { useLoginUserMutation } from "../../../redux/features/api/apiSlice";
@@ -84,6 +85,7 @@ const Login = () => {
       dispatch(generateToken(data?.access_token));
       dispatch(userRole(data?.data?.role));
       dispatch(contactNumber(data?.data?.contactNumber));
+      dispatch(setCompany(data?.data?.companyName));
       navigate("/");
     }
   }, [
@@ -94,6 +96,7 @@ const Login = () => {
     navigate,
     data?.data?.role,
     data?.data?.contactNumber,
+    data?.data?.companyName,
   ]);
 
   return (

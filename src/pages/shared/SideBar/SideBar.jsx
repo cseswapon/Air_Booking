@@ -23,6 +23,7 @@ const SideBar = () => {
     window.location.reload();
   };
   const role = useSelector((state) => state.login.role);
+  const company = useSelector((state) => state.login.company);
   return (
     <>
       <div>
@@ -47,9 +48,9 @@ const SideBar = () => {
           </div>
           <div className="ms-1">
             <Link to="/">
-              <h1 className="text-sm font-bold">Travel Business Portal</h1>
+              <h1 className="text-sm font-bold">{company}</h1>
             </Link>
-            <p className="text-xs">Agent Id: 0001</p>
+            <p className="text-xs">Agent Id: 000{company?.length}</p>
           </div>
         </div>
         <ul className="my-2 px-2">
@@ -59,11 +60,6 @@ const SideBar = () => {
               <li>
                 <Link to="/airTicket">
                   <FaArrowRight className="inline" /> Air Ticket
-                </Link>
-              </li>
-              <li>
-                <Link to="/hotelBooking">
-                  <FaArrowRight className="inline" /> Hotel Booking
                 </Link>
               </li>
             </ul>
@@ -77,30 +73,27 @@ const SideBar = () => {
                   <FaArrowRight className="inline" /> Payment
                 </Link>
               </li>
-              <li>
-                <Link to="/mainStatement">
-                  <FaArrowRight className="inline" /> Main Statement
-                </Link>
-              </li>
             </ul>
           </li>
-          {role === 'admin' && <li className="menu text-[14px]">
-            <RiGitRepositoryCommitsFill className="inline-block text-2xl me-2" />{" "}
-            Commissions
-            <ul className="sub-menu">
-              <li>
-                <Link to="/flightsPackages">
-                  <FaArrowRight className="inline" /> Flights Packages
-                </Link>
-              </li>
+          {role === "admin" && (
+            <li className="menu text-[14px]">
+              <RiGitRepositoryCommitsFill className="inline-block text-2xl me-2" />{" "}
+              Commissions
+              <ul className="sub-menu">
+                <li>
+                  <Link to="/flightsPackages">
+                    <FaArrowRight className="inline" /> Flights Packages
+                  </Link>
+                </li>
 
-              <li>
-                <Link to="/hotelPackages">
-                  <FaArrowRight className="inline" /> Hotel Packages
-                </Link>
-              </li>
-            </ul>
-          </li>}
+                <li>
+                  <Link to="/hotelPackages">
+                    <FaArrowRight className="inline" /> Hotel Packages
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          )}
           <li className="menu text-[14px]">
             <AiTwotoneSetting className="inline-block text-2xl me-2" /> Setting
             <ul className="sub-menu">
@@ -109,16 +102,13 @@ const SideBar = () => {
                   <FaArrowRight className="inline" /> Profile Settings
                 </Link>
               </li>
-              <li>
-                <Link to="/currency">
-                  <FaArrowRight className="inline" /> Currency
-                </Link>
-              </li>
-              {role === 'admin'&& <li>
-                <Link to="/report">
-                  <FaArrowRight className="inline" /> Report
-                </Link>
-              </li>}
+              {role === "admin" && (
+                <li>
+                  <Link to="/report">
+                    <FaArrowRight className="inline" /> Report
+                  </Link>
+                </li>
+              )}
             </ul>
           </li>
           {role === "admin" && (

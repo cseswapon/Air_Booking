@@ -2,14 +2,12 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import AirTicket from "../pages/Dashboard/Booking/AirTicket/AirTicket";
-import HotelBooking from "../pages/Dashboard/Booking/HotelBooking/HotelBooking";
 import FlightPackage from "../pages/Dashboard/Commissions/FlightPackage/FlightPackage";
 import HotelPackage from "../pages/Dashboard/Commissions/HotelPackage/HotelPackage";
 import TotalSale from "../pages/Dashboard/Sale/TotalSale/TotalSale";
 import Currency from "../pages/Dashboard/Setting/Currency/Currency";
 import ProfileSetting from "../pages/Dashboard/Setting/ProfileSetting/ProfileSetting";
 import Report from "../pages/Dashboard/Setting/Report/Report";
-import MainStatement from "../pages/Dashboard/Transaction/MainStatement/MainStatement";
 import Payment from "../pages/Dashboard/Transaction/Payment/Payment";
 import Admin from "../pages/Dashboard/User/Admin/Admin";
 import Agent from "../pages/Dashboard/User/Agent/Agent";
@@ -99,15 +97,6 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: "/hotelBooking",
-    element: (
-      <PrivateRoute>
-        <HotelBooking />
-      </PrivateRoute>
-    ),
-    errorElement: <NotFound />,
-  },
-  {
     path: "/payment",
     element: (
       <PrivateRoute>
@@ -116,15 +105,7 @@ export const router = createBrowserRouter([
     ),
     errorElement: <NotFound />,
   },
-  {
-    path: "/mainStatement",
-    element: (
-      <PrivateRoute>
-        <MainStatement />
-      </PrivateRoute>
-    ),
-    errorElement: <NotFound />,
-  },
+
   {
     path: "/flightsPackages",
     element: (

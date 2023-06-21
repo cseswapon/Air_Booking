@@ -13,6 +13,7 @@ import roundTripSlice from "./features/roundTrip/roundTripSlice";
 import passInfo from "./features/passInfo/passInfo";
 import sitBookingSlice from "./features/sitBooking/sitBookingSlice";
 import persistReducer from "redux-persist/es/persistReducer";
+import profileSettingSlice from "./features/profileSetting/profileSetting";
 
 /* export const store = configureStore({
   // devTools:false,
@@ -35,7 +36,7 @@ const persistConfig = {
   key: "root",
   storage,
   // this is a state hide with a page reload
-  // blacklist: ["counter", "register", "login"], 
+  // blacklist: ["counter", "register", "login"],
   // this is a state show with a page reload
   whitelist: ["counter", "register", "login"],
 };
@@ -48,6 +49,7 @@ const reducer = combineReducers({
   roundTrip: roundTripSlice,
   passInfo: passInfo,
   sitBooking: sitBookingSlice,
+  profileSetting: profileSettingSlice,
   [userApi.reducerPath]: userApi.reducer,
 });
 

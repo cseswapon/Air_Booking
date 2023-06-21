@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAllFlightQuery } from "../../../../../redux/features/api/apiSlice";
 import connectingTime from "./assest/timeimg.svg";
@@ -22,16 +22,35 @@ const SearchResult = () => {
     setSearch({ date: "" });
   }
 
-
   const handelBook = (id) => {
     // console.log(id);
     navigate(
       `/flight/${id}?from=${from}&&to=${to}&&adult=${adult}&&infant=${infant}&&children=${children}&&date=${date}`
     );
   };
+
+  const [range, setRange] = useState(0);
+
+  let start = 0;
+  let end = 400000;
+
+  console.log(data?.data);
+
   return (
     <div className="flex my-5">
-      <div className="w-40">Filter</div>
+      <div className="w-40">
+        <div className="flex items-center">
+          <span>{start}</span>
+          <input
+            onChange={(e) => setRange(e.target.value)}
+            min={start}
+            max={end}
+            className="w-20 focus:outline-0"
+            type="range"
+          />
+          <span>{range || end}</span>
+        </div>
+      </div>
       <div className="flex flex-col items-start">
         {data?.data?.map((flights, i) => (
           <div key={i}>

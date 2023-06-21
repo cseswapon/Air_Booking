@@ -1,4 +1,5 @@
 import React from 'react';
+import withDashboard from '../shared/DashboardLayout/DashboardLayout';
 
 const NotFound = () => {
     return (
@@ -8,4 +9,4 @@ const NotFound = () => {
     );
 };
 
-export default NotFound;
+export default withDashboard(NotFound);
