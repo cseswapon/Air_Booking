@@ -46,14 +46,14 @@ export const userApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags:["User"]
+      invalidatesTags: ["User"],
     }),
     getPayment: builder.query({
       query: () => ({
         url: "Payment",
-        method:"GET",
-      })
-    })
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -63,5 +63,5 @@ export const {
   useAllFlightQuery,
   useGetSingleFlightQuery,
   useAddPaymentMutation,
-  useGetPaymentQuery
+  useGetPaymentQuery,
 } = userApi;

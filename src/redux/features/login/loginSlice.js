@@ -6,6 +6,7 @@ const initialState = {
   token: "",
   contactNumber: "",
   role: "",
+  image: "",
 };
 const loginSlice = createSlice({
   name: "login",
@@ -29,6 +30,9 @@ const loginSlice = createSlice({
     setCompany: (state, { payload }) => {
       state.company = payload;
     },
+    loadedImage: (state, { payload }) => {
+      state.image = payload;
+    },
   },
 });
 
@@ -39,6 +43,7 @@ export const {
   userRole,
   contactNumber,
   setCompany,
+  loadedImage,
 } = loginSlice.actions;
 
 export default loginSlice.reducer;

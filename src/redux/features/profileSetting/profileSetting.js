@@ -4,7 +4,6 @@ const initialState = {
   company: "",
   email: "",
   contactNumber: "",
-  image: null,
 };
 
 const profileSettingSlice = createSlice({
@@ -14,16 +13,14 @@ const profileSettingSlice = createSlice({
     updateCompanyName: (state, { payload }) => {
       state.company = payload;
     },
-    updateEmail: (state, { payload }) => {
-      state.email = payload;
-    },
     updateContactNumber: (state, { payload }) => {
       state.contactNumber = payload;
     },
+    
   },
 });
 
-export const { updateCompanyName, updateEmail, updateContactNumber } =
+export const { updateCompanyName, updateContactNumber } =
     profileSettingSlice.actions;
   
 export default profileSettingSlice.reducer;

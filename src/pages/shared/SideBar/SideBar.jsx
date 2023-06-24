@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../../assets/icon/logo/TBP.png";
-import image from "../../../assets/image/swapon.jpg";
+import avatar from "../../../assets/image/avatar.png";
 import { HiLogout } from "react-icons/hi";
 import { TbBrandBooking } from "react-icons/tb";
 import { AiOutlineTransaction, AiTwotoneSetting } from "react-icons/ai";
@@ -23,7 +23,9 @@ const SideBar = () => {
     window.location.reload();
   };
   const role = useSelector((state) => state.login.role);
+  const images = useSelector((state) => state.login.image);
   const company = useSelector((state) => state.login.company);
+
   return (
     <>
       <div>
@@ -41,8 +43,12 @@ const SideBar = () => {
         <div className="flex items-center border-b-2 border-gray-200 py-3">
           <div>
             <img
-              className="w-14 rounded-full border-2 border-yellow-50"
-              src={image}
+              className="w-14 h-14 me-2 rounded-full border-2 border-yellow-50"
+              src={
+                images
+                  ? `${process.env.REACT_APP_API_URL}uploads/${images}`
+                  : avatar
+              }
               alt="avatar"
             />
           </div>

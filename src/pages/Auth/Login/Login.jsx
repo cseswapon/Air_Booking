@@ -17,6 +17,7 @@ import {
   createEmail,
   createPassword,
   generateToken,
+  loadedImage,
   setCompany,
   userRole,
 } from "../../../redux/features/login/loginSlice";
@@ -86,6 +87,7 @@ const Login = () => {
       dispatch(userRole(data?.data?.role));
       dispatch(contactNumber(data?.data?.contactNumber));
       dispatch(setCompany(data?.data?.companyName));
+      dispatch(loadedImage(data?.data?.image));
       navigate("/");
     }
   }, [
@@ -97,6 +99,7 @@ const Login = () => {
     data?.data?.role,
     data?.data?.contactNumber,
     data?.data?.companyName,
+    data?.data?.image,
   ]);
 
   return (
