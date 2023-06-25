@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAllFlightQuery } from "../../../../../redux/features/api/apiSlice";
 import connectingTime from "./assest/timeimg.svg";
@@ -6,7 +6,7 @@ import { BsFillBagDashFill } from "react-icons/bs";
 const SearchResult = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useSearchParams();
-  const { data } = useAllFlightQuery();
+  const { data,isSuccess } = useAllFlightQuery();
   // console.log(search.get("from"));
   const from = search.get("from");
   const to = search.get("to");
@@ -20,6 +20,9 @@ const SearchResult = () => {
     setSearch({ from: "" });
     setSearch({ to: "" });
     setSearch({ date: "" });
+    setSearch({ adult: "" });
+    setSearch({ infant: "" });
+    setSearch({ children: "" });
   }
 
   const handelBook = (id) => {
@@ -29,32 +32,17 @@ const SearchResult = () => {
     );
   };
 
-  const [range, setRange] = useState(0);
 
-  let start = 0;
-  let end = 400000;
+  console.log(Math.random(data?.data));
 
-  console.log(data?.data);
+  // console.log(data?.data.sort((a,b)=>a.price-b.price))
 
   return (
-    <div className="flex my-5">
-      <div className="w-40">
-        <div className="flex items-center">
-          <span>{start}</span>
-          <input
-            onChange={(e) => setRange(e.target.value)}
-            min={start}
-            max={end}
-            className="w-20 focus:outline-0"
-            type="range"
-          />
-          <span>{range || end}</span>
-        </div>
-      </div>
-      <div className="flex flex-col items-start">
+    <div className="my-5">
+      <div>
         {data?.data?.map((flights, i) => (
           <div key={i}>
-            <div className="flex items-center space-x-5 p-2 rounded-sm border border-gray-300 w-full mb-4">
+            <div className="flex items-center justify-between space-x-5 p-2 rounded-sm border border-gray-300 w-full mb-4">
               <div className="text-center">
                 <img
                   src={flights.flag}

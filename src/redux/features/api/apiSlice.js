@@ -15,7 +15,7 @@ export const userApi = createApi({
       }
     },
   }),
-  tagTypes: ["User"],
+  tagTypes: ["User", "Flight", "Payment"],
   endpoints: (builder) => ({
     addUser: builder.mutation({
       query: (data) => ({
@@ -23,6 +23,7 @@ export const userApi = createApi({
         method: "POST",
         body: data,
       }),
+      providesTags: ["User"],
     }),
     loginUser: builder.mutation({
       query: (data) => ({
@@ -30,15 +31,18 @@ export const userApi = createApi({
         method: "POST",
         body: data,
       }),
+      providesTags: ["User"],
     }),
     allFlight: builder.query({
       query: () => "flight",
+      providesTags: ["Flight"],
     }),
     getSingleFlight: builder.query({
       query: (id) => ({
         url: `flight/${id}`,
         method: "GET",
       }),
+      providesTags: ["Flight"],
     }),
     addPayment: builder.mutation({
       query: (data) => ({
@@ -46,13 +50,14 @@ export const userApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["User"],
+      providesTags: ["Payment"],
     }),
     getPayment: builder.query({
       query: () => ({
-        url: "Payment",
+        url: "payment",
         method: "GET",
       }),
+      invalidatesTags: ["Payment"],
     }),
   }),
 });

@@ -54,9 +54,13 @@ const SideBar = () => {
           </div>
           <div className="ms-1">
             <Link to="/">
-              <h1 className="text-sm font-bold">{company}</h1>
+              <h1 className="text-sm font-bold">
+                {company.length >= 23
+                  ? `${company.slice(0, 23)}...`
+                  : company}
+              </h1>
             </Link>
-            <p className="text-xs">Agent Id: 000{company?.length}</p>
+            <p className="text-xs">Agent Id: 000{Math.floor(Math.random()*company?.length)}</p>
           </div>
         </div>
         <ul className="my-2 px-2">

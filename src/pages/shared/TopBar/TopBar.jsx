@@ -40,8 +40,7 @@ const TopBar = () => {
               <FaMoneyCheckAlt />
             </span>
             <div>
-              <p>Main Balance: 00.00</p>
-              <p>Credit Balance: 00.00</p>
+              <p>Currency : USD</p>
             </div>
           </div>
           <div className="ms-10">

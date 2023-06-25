@@ -41,6 +41,7 @@ const ProfileSetting = () => {
       .then((data) => {
         // console.log(data);
         if (data.message) {
+          alert(data.message)
           navigator("/");
         }
       })
