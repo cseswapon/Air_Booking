@@ -8,6 +8,8 @@ const Payment = () => {
     refetchOnMount: true,
   });
   const email = useSelector((state) => state.login.email);
+  const role = useSelector((state) => state.login.role);
+
   useEffect(() => {
     refetch()
   },[refetch])
@@ -35,7 +37,7 @@ const Payment = () => {
               <th className="py-2 px-4 border-b">Status</th>
             </tr>
           </thead>
-          <tbody>
+          {role === 'user' && <tbody>
             {data?.data
               .filter((name) => name.email === email)
               .map((_name, i) => {
@@ -56,7 +58,29 @@ const Payment = () => {
                   </tr>
                 );
               })}
-          </tbody>
+          </tbody>}
+          {role === 'admin' && <tbody>
+            {data?.data
+              .map((_name, i) => {
+                return (
+                  <tr key={i}>
+                    <td className="py-2 px-4 border-b">{i + 1}</td>
+                    <td className="py-2 px-4 border-b">{_name?.email}</td>
+                    <td className="py-2 px-4 border-b">{_name?.createdAt}</td>
+                    <td className="py-2 px-4 border-b">${_name?.amount}</td>
+                    <td className="py-2 px-4 border-b">
+                      <button
+                        disabled={true}
+                        className="bg-blue-400 text-white px-2 py-1 rounded cursor-not-allowed"
+                      >
+                        paid
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>}
+
         </table>
       </div>
     </div>

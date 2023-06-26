@@ -112,13 +112,6 @@ const SideBar = () => {
                   <FaArrowRight className="inline" /> Profile Settings
                 </Link>
               </li>
-              {role === "admin" && (
-                <li>
-                  <Link to="/report">
-                    <FaArrowRight className="inline" /> Report
-                  </Link>
-                </li>
-              )}
             </ul>
           </li>
           {role === "admin" && (
