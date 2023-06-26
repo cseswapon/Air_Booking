@@ -2,8 +2,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
 import AirTicket from "../pages/Dashboard/Booking/AirTicket/AirTicket";
-import FlightPackage from "../pages/Dashboard/Commissions/FlightPackage/FlightPackage";
-import HotelPackage from "../pages/Dashboard/Commissions/HotelPackage/HotelPackage";
+
 import TotalSale from "../pages/Dashboard/Sale/TotalSale/TotalSale";
 import Currency from "../pages/Dashboard/Setting/Currency/Currency";
 import ProfileSetting from "../pages/Dashboard/Setting/ProfileSetting/ProfileSetting";
@@ -101,25 +100,6 @@ export const router = createBrowserRouter([
       <PrivateRoute>
         <Payment />
       </PrivateRoute>
-    ),
-    errorElement: <NotFound />,
-  },
-
-  {
-    path: "/flightsPackages",
-    element: (
-      <AdminRoute>
-        <FlightPackage />
-      </AdminRoute>
-    ),
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/hotelPackages",
-    element: (
-      <AdminRoute>
-        <HotelPackage />
-      </AdminRoute>
     ),
     errorElement: <NotFound />,
   },

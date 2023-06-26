@@ -59,6 +59,13 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Payment"],
     }),
+    getAllUser: builder.query({
+      query: () => ({
+        url: "user/users",
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
   }),
 });
 
@@ -69,4 +76,5 @@ export const {
   useGetSingleFlightQuery,
   useAddPaymentMutation,
   useGetPaymentQuery,
+  useGetAllUserQuery
 } = userApi;

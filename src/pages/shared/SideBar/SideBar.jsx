@@ -85,25 +85,6 @@ const SideBar = () => {
               </li>
             </ul>
           </li>
-          {role === "admin" && (
-            <li className="menu text-[14px]">
-              <RiGitRepositoryCommitsFill className="inline-block text-2xl me-2" />{" "}
-              Commissions
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/flightsPackages">
-                    <FaArrowRight className="inline" /> Flights Packages
-                  </Link>
-                </li>
-
-                <li>
-                  <Link to="/hotelPackages">
-                    <FaArrowRight className="inline" /> Hotel Packages
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          )}
           <li className="menu text-[14px]">
             <AiTwotoneSetting className="inline-block text-2xl me-2" /> Setting
             <ul className="sub-menu">
